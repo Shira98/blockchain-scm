@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "0.1.0",
+  "name": "scm-frontend",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@drizzle/react-components": "^1.5.1",
@@ -10,8 +10,7 @@
     "@material-ui/icons": "^4.11.3",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "3.2.0"
+    "react-router-dom": "^6.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
