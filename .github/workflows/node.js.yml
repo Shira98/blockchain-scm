@@ -10,6 +10,8 @@ on:
       - 'appfrontend/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'appfrontend/**'
 
 jobs:
   build:
@@ -30,4 +32,4 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm test --if-present
+    - run: npm --prefix appfrontend test
