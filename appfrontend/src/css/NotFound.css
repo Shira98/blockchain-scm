@@ -1,0 +1,10 @@
+.not-found h1 {
+    font-size: 8em;
+    margin-top: 0%;
+    padding-top: 4rem;
+    margin-bottom: 0%;
+}
+
+.nf-button {
+    width: 120px;
+}

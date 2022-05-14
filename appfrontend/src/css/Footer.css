@@ -1,0 +1,19 @@
+footer {
+    background-color: #2D323F;
+    display: flex;
+    flex-direction: column;
+    min-height: 5vh;
+    margin-top: auto;
+    padding: 30px 20px  31px 20px;
+    
+}
+
+.AppFooter {
+    color: #FBFAFA;
+}
+
+.FooterLink:hover {
+    text-decoration: none !important;
+    color: #FBFAFA !important;
+    font-weight: bolder;
+} 
