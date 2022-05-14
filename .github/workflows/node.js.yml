@@ -28,6 +28,6 @@ jobs:
         cache: 'npm'
     - run: npm --prefix appfrontend ci
     - run: npm install truffle@5.5.12
-    - run: truffle compile
+    - run: npm truffle compile
     - run: npm --prefix appfrontend run build --if-present
     - run: npm --prefix appfrontend test
