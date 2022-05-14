@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm --prefix appfrontend ci
-    - run: npm install truffle@5.5.12
-    - run: npm truffle compile
+    - run: npm ci
+    - run: truffle compile
     - run: npm --prefix appfrontend run build --if-present
     - run: npm --prefix appfrontend test
