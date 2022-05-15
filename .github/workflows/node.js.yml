@@ -35,7 +35,7 @@ jobs:
       run: npm ci
       working-directory: appfrontend
       
-    - name: Compile Truffle Contracts
+    - name: Compile Smart Contracts
       run: truffle compile
       
     - name: Build Frontend
@@ -45,3 +45,6 @@ jobs:
     - name: Test Frontend
       run: npm test
       working-directory: appfrontend
+
+    - name: Test Smart Contracts
+      run: truffle test
