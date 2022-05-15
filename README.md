@@ -21,8 +21,7 @@ Frontend images for current state of the application are stored in the `images/c
 
 ### Install the Required Dependencies
 
-- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies.
-- Additionally, install Truffle for managing contracts using `npm install truffle`.
+- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install all of the required dependencies.
 - Install the Ganache client from Truffle's [official website](https://trufflesuite.com/ganache/).
 
 ### Configure the Project
