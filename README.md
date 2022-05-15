@@ -12,6 +12,8 @@ Tools and versions used -
 - Solidity v0.5.16
 - Web3.js v1.5.3
 
+Additionally, the frontend is powered by *material-ui* v4.x.
+
 ## Code Structure
 The ReactJs part of the code goes under `appfrontend`, smart contracts under `contracts`, and migration configurations for these smart contracts under `migrations`.
 Configurations for connecting to local blockchain - Ganache, and compiling the contracts are written in the `truffle-config.js` file.
