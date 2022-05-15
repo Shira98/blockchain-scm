@@ -13,8 +13,11 @@ Tools and versions used -
 - Web3.js v1.5.3
 
 ## Code Structure
-The ReactJs part of the code goes under `appfrontend`, smart contracts under `contracts`, and migration configuration for these smart contracts under `migrations`.
-Configurations for connecting to local blockchain - Ganache, are written in the `truffle-config.js` file.
+The ReactJs part of the code goes under `appfrontend`, smart contracts under `contracts`, and migration configurations for these smart contracts under `migrations`.
+Configurations for connecting to local blockchain - Ganache, and compiling the contracts are written in the `truffle-config.js` file.
+
+Frontend uses the compiled contracts to interact with them. The compiled contracts are stored in `appfrontend/src/contracts/` (as configured in the `truffle-config.js` file), and are read internally in the `appfrontend/src/drizzleOptions.js` file. The expected contracts and events are configured here.
+
 Frontend images for current state of the application are stored in the `images/currentstate` folder.
 
 ## Getting Started
@@ -30,6 +33,7 @@ Frontend images for current state of the application are stored in the `images/c
 - Open up Ganache and create a new workspace.
 - Update `truffle-config.js` file with the workspace's network details. Connect the project to the workspace by linking the config file in the workspace's settings. 
 - Use Truffle commands `truffle compile` and `truffle migrate` to compile and deploy the smart contracts to the new Ganache workspace. To deploy specifically to the `dev` environment, suffix `--network dev` to the above commands. Similarly, suffix `--network <network_name>` for any custom network names. 
+- If updating any folder names in the frontend code, please note that the path for storing the compiled contracts needs to be modified in the `truffle-config.js` file.
 - The migrations should successfully go through and the workspace should be updated with the contract deployment details.
  
 For more commands, please refer to Truffle's [guides and tutorials](https://trufflesuite.com/docs/truffle/).
