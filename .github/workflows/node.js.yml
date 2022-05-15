@@ -27,7 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         
-    - name: Install Truffle Globally
+    - name: Install Truffle v5.5.12 Globally
       run: npm install truffle@5.5.12 -g
       
     - name: Install Dependencies from Main Lockfile

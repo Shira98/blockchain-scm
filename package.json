@@ -22,7 +22,6 @@
   "homepage": "https://github.com/truffle-box/drizzle-box#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
-    "react-router-dom": "^6.3.0",
-    "truffle": "^5.5.12"
+    "react-router-dom": "^6.3.0"
   }
 }
