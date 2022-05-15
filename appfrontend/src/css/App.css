@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   margin: 2rem;
+  background: #92869f2f;
+  border-radius: 6px;
 }
 
 .section {
@@ -15,4 +17,12 @@
   align-items: center;
   text-align: center;
   min-height: calc(100vh - 243px);
+}
+
+#appBar {
+  background-color: #d4ccdd; 
+  color: #2D323F;
+  border-style: solid solid none solid;
+  border-width: 2px;
+  border-color: #92869f2f;
 }

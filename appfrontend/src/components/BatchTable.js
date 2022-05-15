@@ -29,13 +29,13 @@ export default class BatchTable extends React.Component {
 
     render() {
         return(
-            <Paper>
-                <TableContainer>
+            <Paper elevation={0} style={{ minHeight: 450 }}>
+                <TableContainer style={{ minHeight: 420 }}>
                     <Table aria-label="simple table">
                     <TableHead color="primary">
                         <TableRow color="primary">
                         {this.props.cols.map((col) => (
-                            <TableCell key={col.field} align="center">{col.title.toUpperCase()}</TableCell>
+                            <TableCell key={col.field} align={col.align}>{col.title.toUpperCase()}</TableCell>
                         ))}
                         </TableRow>
                     </TableHead>
@@ -50,18 +50,18 @@ export default class BatchTable extends React.Component {
                                     tabIndex={-1}
                                     key={row.productName}
                                     >
-                                    <TableCell component="th" scope="row" align="left">{row.productName}</TableCell>
-                                    <TableCell align="center">{row.productPrice}</TableCell>
-                                    <TableCell align="center">{row.productQuantity}</TableCell>
-                                    <TableCell align="center">{row.productStatus}</TableCell>
-                                    <TableCell align="center">
+                                    <TableCell component="th" scope="row" align="left" width="20%">{row.productName}</TableCell>
+                                    <TableCell align="left" width="10%">{row.productPrice}</TableCell>
+                                    <TableCell align="left" width="10%">{row.productQuantity}</TableCell>
+                                    <TableCell align="left" width="10%">{row.productStatus}</TableCell>
+                                    <TableCell align="center" width="20%">
                                         <Button 
                                             variant="outlined" 
                                             color='secondary' 
                                             disabled={row.disableActionButton}
                                             onClick={() => this.props.toggleConfirmActionPopUp(row.action, row.productId)}>{row.action}</Button>
                                     </TableCell>
-                                    <TableCell align="center">
+                                    <TableCell align="center" width="20%">
                                         <Button 
                                             variant="outlined" 
                                             color='secondary' 
