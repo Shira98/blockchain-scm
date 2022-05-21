@@ -8,7 +8,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Grid from "@material-ui/core/Grid";
 import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 import "../css/PopUpModal.css";
 
