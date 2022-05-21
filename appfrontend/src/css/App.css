@@ -1,4 +1,4 @@
-.App {
+.app {
   text-align: center;
   margin: 2rem;
   background: #92869f2f;
@@ -11,18 +11,37 @@
   margin: 4rem auto auto;
 }
 
-.mainBody {
+.main-body {
   margin-top: 50px;
   align-content: center;
   align-items: center;
   text-align: center;
-  min-height: calc(100vh - 243px);
+  min-height: calc(100vh - 258px);
 }
 
-#appBar {
+.undecorated-links {
+  color: inherit;
+  text-decoration: none;
+}
+
+#app-bar {
   background-color: #d4ccdd; 
   color: #2D323F;
   border-style: solid solid none solid;
   border-width: 2px;
   border-color: #92869f2f;
+}
+
+#app-logo {
+  width: 150px;
+}
+
+#app-logo-header {
+  width: 45px;
+  padding-top: 5px;
+}
+
+#right-anchored-navlink {
+  margin-right: 0px;
+  margin-left: auto;
 }
