@@ -178,38 +178,39 @@ export default class Home extends React.Component {
 
                 {this.state.showAddBatch ? 
                     <ProductBatchForm 
-                    open={this.state.showAddBatch} 
-                    closePopup={() => this.toggleAddBatchPopUp()}
-                    contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
-                    currentAddress={this.props.drizzleState.accounts[0]}
-                    setTransactionSuccess={(status) => this.setTransactionSuccess(status)}/>
+                        open={this.state.showAddBatch} 
+                        closePopup={() => this.toggleAddBatchPopUp()}
+                        contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                        currentAddress={this.props.drizzleState.accounts[0]}
+                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)}/>
                     : null
                 }
 
                 {this.state.showBatchDetails ? 
                     <ProductDetails 
-                    open={this.state.showBatchDetails} 
-                    closePopup={() => this.toggleBatchDetailsPopUp()} 
-                    product={this.state.productRow}/>
+                        open={this.state.showBatchDetails} 
+                        closePopup={() => this.toggleBatchDetailsPopUp()} 
+                        product={this.state.productRow}/>
                     : null
                 }
 
                 {this.state.showConfirmAction ? 
                     <PerformStatusAction 
-                    open={this.state.showConfirmAction} 
-                    closePopup={() => this.toggleConfirmActionPopUp()} 
-                    contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
-                    action={this.state.actionState}
-                    productId={this.state.productId}
-                    currentAddress={this.props.drizzleState.accounts[0]}
-                    setTransactionSuccess={(status) => this.setTransactionSuccess(status)} />
+                        open={this.state.showConfirmAction} 
+                        closePopup={() => this.toggleConfirmActionPopUp()} 
+                        contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                        action={this.state.actionState}
+                        productId={this.state.productId}
+                        currentAddress={this.props.drizzleState.accounts[0]}
+                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)} />
                     : null
                 }
 
                 {this.state.transactionSuccess ? 
                     <ToastMessage 
-                    open={this.state.transactionSuccess} 
-                    closeToastMessage={() => this.closeToastMessage()}
+                        open={this.state.transactionSuccess} 
+                        toastMessage="Transaction successful!"
+                        closeToastMessage={() => this.closeToastMessage()}
                     />
                     : null
                 }

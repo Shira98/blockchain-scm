@@ -17,7 +17,7 @@ export default class ToastMessage extends React.Component {
                 }}
                 open={this.props.open}
                 autoHideDuration={2000}
-                message="Transaction successful!"
+                message={this.props.toastMessage}
                 onClose={() => this.props.closeToastMessage()}
             />
         );
