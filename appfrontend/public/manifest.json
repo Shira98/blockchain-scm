@@ -1,19 +1,19 @@
 {
-    "short_name": "scm",
-    "name": "scm",
+    "short_name": "bscm",
+    "name": "bscm",
     "icons": [
       {
-        "src": "favicon.ico",
+        "src": "b_light_circle.ico",
         "sizes": "64x64 32x32 24x24 16x16",
         "type": "image/x-icon"
       },
       {
-        "src": "logo192.png",
+        "src": "b_light_circle.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "logo512.png",
+        "src": "b_light_circle.png",
         "type": "image/png",
         "sizes": "512x512"
       }

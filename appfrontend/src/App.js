@@ -37,7 +37,7 @@ const App = () => {
                         return (
                             <Router>
                                 <Header />
-                                <div className="mainBody" color="primary">
+                                <div className="main-body" color="primary">
                                     <Routes>
                                         <Route exact path="/" element={<Home drizzle={drizzle} drizzleState={drizzleState} />} /> 
                                         <Route exact path="/profile" element={<Profile drizzle={drizzle} drizzleState={drizzleState} />} />   

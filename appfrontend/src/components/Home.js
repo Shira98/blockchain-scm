@@ -134,9 +134,9 @@ export default class Home extends React.Component {
         const activeBatches = rows.filter((row) => !row.disableActionButton);
         const previousBatches = rows.filter((row) => row.disableActionButton);
         return (
-            <Paper className="App" style={{ backgroundColor: "#92869f2f", minHeight: 600 }}>
+            <Paper className="app" style={{ backgroundColor: "#92869f2f", minHeight: 600 }}>
                 <AppBar 
-                    id="appBar"
+                    id="app-bar"
                     position="static" 
                     elevation={0} 
                     color="secondary" 

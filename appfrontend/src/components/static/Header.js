@@ -6,7 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography'; 
 import Badge from '@material-ui/core/Badge';  
-import AccountCircle from '@material-ui/icons/AccountCircle';
+
+import '../../css/App.css';
 
 /**
  * Header component. Present in every page.
@@ -15,33 +16,32 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
  */
 export default function Header() {
     return(
-        <div className="HeaderTop"> 
+        <div> 
             <AppBar position="static" color="secondary" elevation={0}>
                 <Toolbar> 
-                <div> 
-                <NavLink exact to="/"  style={{textDecoration: "none", color: "inherit"}}> 
-                    <IconButton aria-label="show 17 new notifications" color="inherit">
-                        <Badge color="inherit">
-                        {/* add icon */} 
-                        <Typography noWrap>
-                        Batches
-                        </Typography>  
-                        </Badge>
-                    </IconButton>
+                    <NavLink exact to="/" className="undecorated-links"> 
+                        <IconButton color="inherit">
+                            <Badge color="inherit">
+                                <Typography noWrap>
+                                    <img src="bscm_light_circle.png" alt="logo" id="app-logo-header"/>
+                                </Typography>  
+                            </Badge>
+                        </IconButton>
                     </NavLink>
-                </div> 
-                <div> 
-                    <NavLink to="/profile" style={{textDecoration: "none", color: "inherit"}}> 
-                    <IconButton
-                        edge="end"
-                        aria-label="account of current user" 
-                        aria-haspopup="true" 
-                        color="inherit"
-                    > 
-                        <AccountCircle />
-                    </IconButton>
+                    <NavLink exact to="/" className="undecorated-links"> 
+                        <IconButton color="inherit">
+                            <Badge color="inherit">
+                                <Typography noWrap> VIEW BATCHES </Typography>  
+                            </Badge>
+                        </IconButton>
+                    </NavLink>
+                    <NavLink to="/profile" id="right-anchored-navlink" className="undecorated-links"> 
+                        <IconButton color="inherit">
+                            <Badge color="inherit">
+                                <Typography noWrap> VIEW PROFILE </Typography>
+                            </Badge>
+                        </IconButton>
                     </NavLink> 
-                </div> 
                 </Toolbar>
             </AppBar>   
         </div>
