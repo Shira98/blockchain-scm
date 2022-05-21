@@ -23,7 +23,7 @@ export default function Header() {
                         <IconButton color="inherit">
                             <Badge color="inherit">
                                 <Typography noWrap>
-                                    <img src="bscm_light_circle.png" alt="logo" id="app-logo-header"/>
+                                    <img src="/bscm_light_circle.png" alt="logo" id="app-logo-header"/>
                                 </Typography>  
                             </Badge>
                         </IconButton>

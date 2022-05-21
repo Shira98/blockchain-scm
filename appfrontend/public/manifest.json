@@ -3,17 +3,17 @@
     "name": "bscm",
     "icons": [
       {
-        "src": "b_light_circle.ico",
+        "src": "/b_light_circle.ico",
         "sizes": "64x64 32x32 24x24 16x16",
         "type": "image/x-icon"
       },
       {
-        "src": "b_light_circle.png",
+        "src": "/b_light_circle.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "b_light_circle.png",
+        "src": "/b_light_circle.png",
         "type": "image/png",
         "sizes": "512x512"
       }

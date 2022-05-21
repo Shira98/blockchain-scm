@@ -131,8 +131,8 @@ export default class Home extends React.Component {
     render() {
         const SupplyChainLifecycle = this.getLifeCycleContract();
         const rows = this.getProductDetails(SupplyChainLifecycle);
-        const activeBatches = rows.filter((row) => !row.disableActionButton);
-        const previousBatches = rows.filter((row) => row.disableActionButton);
+        const activeBatches = rows.filter((row) => !row.disableActionButton).reverse();
+        const previousBatches = rows.filter((row) => row.disableActionButton).reverse();
         return (
             <Paper className="app" style={{ backgroundColor: "#92869f2f", minHeight: 600 }}>
                 <AppBar 
@@ -173,8 +173,6 @@ export default class Home extends React.Component {
                         emptyRowsMessage="No history batches yet. Try selling a batch."
                     />
                 </TabPanel>
-
-              
 
                 {/* Pop-ups & Toasts*/}
 

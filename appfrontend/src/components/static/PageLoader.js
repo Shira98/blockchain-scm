@@ -7,7 +7,6 @@ import Typography from "@material-ui/core/Typography";
 
 import '../../css/App.css';
 
-
 /**  
  * A linear progress bar loader.
  * 
@@ -18,7 +17,7 @@ export const PageLoader = () => (
         <Backdrop open color="secondary">
             <center>
                 <Box>
-                    <img src="bscm_light_circle.png" alt="logo" id="app-logo"/>
+                    <img src="/bscm_light_circle.png" alt="logo" id="app-logo"/>
                     <br/>
                     <br/>
                     <Typography variant="h7" color="textSecondary">CONNECTING TO THE CHAIN</Typography>

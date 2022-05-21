@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Grid from "@material-ui/core/Grid";
 import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import "../css/PopUpModal.css";
 
@@ -33,8 +34,7 @@ export default class ProductBatchForm extends React.Component {
             formData.prodDesc,
             parseInt(formData.prodPrice),
             parseInt(formData.prodQty),
-            this.props.currentAddress,
-           
+            this.props.currentAddress
         )
         .send(
             {
@@ -121,9 +121,11 @@ export default class ProductBatchForm extends React.Component {
                                             required 
                                             placeholder="Product Price"  
                                             name="prodPrice"
-                                            step={0.5} 
-                                            color="secondary" 
-                                            type="number" 
+                                            type="number"
+                                            inputProps={{
+                                                min: 1,
+                                                pattern: "[0-9]*"
+                                            }}
                                             onChange={(event) => this.handleInput(event)}
                                         />
                                     </Grid>
@@ -134,7 +136,12 @@ export default class ProductBatchForm extends React.Component {
                                             placeholder="Product Quantity" 
                                             name="prodQty"
                                             type="number"
-                                            onChange={(event) => this.handleInput(event)} />
+                                            inputProps={{
+                                                min: 1,
+                                                pattern: "[0-9]*"
+                                            }}
+                                            onChange={(event) => this.handleInput(event)} 
+                                        />
                                     </Grid>
                                 </Grid>
                             </center>
