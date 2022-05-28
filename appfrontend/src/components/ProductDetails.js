@@ -19,6 +19,7 @@ export default class ProductDetails extends React.Component {
 
     render() {
         const productDetails = this.props.product;
+        console.log(productDetails);
         return(
             <Dialog
                 open={this.props.open}
@@ -55,7 +56,7 @@ export default class ProductDetails extends React.Component {
                             <Grid item xs={6} style={{ fontWeight: "bold"}} >
                                 Product Description
                             </Grid>
-                            <Grid item xs >
+                            <Grid item xs style={{whiteSpace: 'pre-line'}} >
                                     {productDetails.productDesc} 
                             </Grid>
                             <Grid item xs={6} style={{ fontWeight: "bold"}}>

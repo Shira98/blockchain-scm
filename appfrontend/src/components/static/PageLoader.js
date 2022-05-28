@@ -20,7 +20,7 @@ export const PageLoader = () => (
                     <img src="/bscm_light_circle.png" alt="logo" id="app-logo"/>
                     <br/>
                     <br/>
-                    <Typography variant="h7" color="textSecondary">CONNECTING TO THE CHAIN</Typography>
+                    <Typography variant="h7" color="textSecondary">Connecting to the chain. Please check your connection.</Typography>
                     <br/>
                     <br/>
                     <LinearProgress />   
