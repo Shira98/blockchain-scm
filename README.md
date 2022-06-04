@@ -22,6 +22,8 @@ Frontend uses the compiled contracts to interact with them. The compiled contrac
 
 Frontend images for current state of the application are stored in the `images/currentstate` folder.
 
+To know more about what's part of the frontend code, check out the README file in `appfrontend/`. 
+
 ## Getting Started
 
 ### Install the Required Dependencies
