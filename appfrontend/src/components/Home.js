@@ -69,7 +69,6 @@ export default class Home extends React.Component {
 
     getProductDetails(contractName) {
         const productDetailsArray = contractName.getAllProductDetails[this.state.dataKey];
-        console.log(productDetailsArray);
         let rows = [];
         if(productDetailsArray && productDetailsArray.value.length > 0){
             productDetailsArray.value.forEach(productDetails => {

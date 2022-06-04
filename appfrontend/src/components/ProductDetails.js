@@ -19,7 +19,6 @@ export default class ProductDetails extends React.Component {
 
     render() {
         const productDetails = this.props.product;
-        console.log(productDetails);
         return(
             <Dialog
                 open={this.props.open}
