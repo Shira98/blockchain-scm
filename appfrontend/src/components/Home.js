@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import AppBar from "@material-ui/core/AppBar";
+import Paper from "@material-ui/core/Paper";
 
 import {PRODUCT_STATUSES, STATUS_ACTIONS} from './enum/ProductStatusEnum';
 import ProductBatchForm from './ProductBatchForm';
@@ -12,7 +13,6 @@ import PerformStatusAction from './PerformStatusAction';
 import BatchTable from './BatchTable';
 import ToastMessage from "./ToastMessage";
 import TabPanel from "./TabPanel";
-import { Paper } from "@material-ui/core";
 
 const cols = [
   { field: "productName", title: "Product Name", numeric: false, align: "left" },
@@ -20,7 +20,7 @@ const cols = [
   { field: "productQuantity", title: "Quantity", numeric: true, align: "left" },
   { field: "productStatus", title: "Status", numeric: false, align: "left" },
   { field: "action", title: "Action", numeric: false, align: "center" },
-  { field: "productDesc", title: "Product Description", numeric: false, align: "center" },
+  { field: "productDesc", title: "Additional Details", numeric: false, align: "center" },
 ];
 
 /**
@@ -210,6 +210,16 @@ export default class Home extends React.Component {
                     <ToastMessage 
                         open={this.state.transactionSuccess} 
                         toastMessage="Transaction successful!"
+                        closeToastMessage={() => this.closeToastMessage()}
+                        bgColor='#9986af'
+                    />
+                    : null
+                }
+                {this.state.transactionSuccess === false ? 
+                    <ToastMessage 
+                        open={this.state.transactionSuccess === false} 
+                        toastMessage="Transaction failed!"
+                        bgColor='#eb535e'
                         closeToastMessage={() => this.closeToastMessage()}
                     />
                     : null

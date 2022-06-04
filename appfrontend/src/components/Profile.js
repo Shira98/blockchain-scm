@@ -1,7 +1,7 @@
 import React from "react"; 
-import { newContextComponents } from "@drizzle/react-components";
- 
-const { AccountData, ContractData, ContractForm } = newContextComponents;
+
+import Paper from "@material-ui/core/Paper";
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 /**
  * Component for the profile page. Fetches profile details from the first available account.
@@ -10,15 +10,16 @@ const { AccountData, ContractData, ContractForm } = newContextComponents;
  */
 export default ({ drizzle, drizzleState }) => {
     return(
-        <div>
-            <h1>My Profile</h1>
-            <AccountData
-                drizzle={drizzle}
-                drizzleState={drizzleState}
-                accountIndex={0}
-                units="ether"
-                precision={3}
-            />
-        </div>
+        <center>
+            {/* <Paper className="app" style={{ maxWidth: "500px", minHeight: "400px", backgroundColor: "#92869f8a" }}> */}
+                {/* <br />
+                <br /> */}
+                <AccountCircle style={{ fontSize: 100 }} />
+                <br />
+                <br />
+                <h4>Account Address</h4> {drizzleState.accounts[0]}
+                <h4>Account Balance</h4> {drizzleState.accountBalances[drizzleState.accounts[0]]} wei
+            {/* </Paper> */}
+        </center>
     );
 };

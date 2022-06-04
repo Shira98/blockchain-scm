@@ -20,10 +20,10 @@ const NotFound = () => {
             <img src="/404.png" alt="404"/>
             <h2>Oops! Looks like the page you're looking for doesn't exist.</h2>
             <Grid container justifyContent="center">
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <Button variant="outlined" className="nf-button" onClick={() => navigate(-1)}>Go Back</Button>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <Button variant="outlined" className="nf-button" onClick={() => navigate("/")}>Home</Button>
                 </Grid>
             </Grid>

@@ -55,7 +55,7 @@ export default class ProductDetails extends React.Component {
                             <Grid item xs={6} style={{ fontWeight: "bold"}} >
                                 Product Description
                             </Grid>
-                            <Grid item xs >
+                            <Grid item xs style={{whiteSpace: 'pre-line'}} >
                                     {productDetails.productDesc} 
                             </Grid>
                             <Grid item xs={6} style={{ fontWeight: "bold"}}>
