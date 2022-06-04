@@ -212,6 +212,16 @@ export default class Home extends React.Component {
                         open={this.state.transactionSuccess} 
                         toastMessage="Transaction successful!"
                         closeToastMessage={() => this.closeToastMessage()}
+                        bgColor='#9986af'
+                    />
+                    : null
+                }
+                {this.state.transactionSuccess === false ? 
+                    <ToastMessage 
+                        open={this.state.transactionSuccess === false} 
+                        toastMessage="Transaction failed!"
+                        bgColor='#eb535e'
+                        closeToastMessage={() => this.closeToastMessage()}
                     />
                     : null
                 }

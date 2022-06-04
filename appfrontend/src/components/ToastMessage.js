@@ -1,6 +1,8 @@
 import React from "react"; 
 
 import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+
 
 /**
  * Component to show a toast/snackbar at the bottom of the screen after every successful transaction.
@@ -17,9 +19,15 @@ export default class ToastMessage extends React.Component {
                 }}
                 open={this.props.open}
                 autoHideDuration={2000}
-                message={this.props.toastMessage}
                 onClose={() => this.props.closeToastMessage()}
-            />
+            >
+                <SnackbarContent 
+                    message={this.props.toastMessage}
+                    style={{
+                        backgroundColor:this.props.bgColor,
+                    }}
+                />
+            </Snackbar>
         );
     }
 };
