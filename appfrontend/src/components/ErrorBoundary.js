@@ -22,7 +22,6 @@ class ErrorBoundary extends React.Component {
       }
 
     promiseRejectionHandler = (event) => {
-        console.log("within promise handler");
         this.setState({
             hasError: true,
         });
@@ -45,13 +44,10 @@ class ErrorBoundary extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log("From within the error boundary willUnmount.");
         window.removeEventListener('unhandledrejection', this.promiseRejectionHandler);
     }
     
     render() {
-        console.log("within render: " + this.state.hasError);
-        console.log("within render, failure toast value: " + this.state.showFailureToast);
         if (this.state.hasError) {
             return ('');
         }
