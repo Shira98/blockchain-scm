@@ -20,7 +20,7 @@ export default class PerformStatusAction extends React.Component {
 
     getActionSpecificMethod(action){
         let method = null;
-        if(action != null){
+        if(action != null && this.props.contractName != null){
             switch(action) {
                 case STATUS_ACTIONS[0]:
                     method = this.props.contractName.methods["pickUpProduct"];
@@ -37,11 +37,11 @@ export default class PerformStatusAction extends React.Component {
     }
 
     confirmAction(){
+        this.props.showLoaderScreen();
         const contractMethod = this.getActionSpecificMethod(this.props.action);
         if(contractMethod != null){
             contractMethod(
                 this.props.productId
-                
             )
             .send(
                 {
@@ -52,16 +52,21 @@ export default class PerformStatusAction extends React.Component {
             .then((receipt) => {
                 this.props.setTransactionSuccess(true);
                 console.log(receipt);
+                this.props.hideLoaderScreen();
+                this.props.closePopup();
             })
             .catch((error) => {
                 this.props.setTransactionSuccess(false);
                 console.log(error);
+                this.props.hideLoaderScreen();
+                this.props.closePopup();
             });
         }
         else {
             this.props.setTransactionSuccess(false);
+            this.props.hideLoaderScreen();
+            this.props.closePopup();
         }
-        this.props.closePopup();
     }
 
     toCamelCase(str) {

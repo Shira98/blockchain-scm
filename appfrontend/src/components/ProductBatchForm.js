@@ -24,9 +24,12 @@ export default class ProductBatchForm extends React.Component {
         prodDesc: null,
         prodPrice: null,
         prodQty: null
-      };
-    
-    createProductBatch(){
+    };
+
+    createProductBatch(event){
+        //Prevents reloading of the entire page after submission.
+        event.preventDefault();
+        this.props.showLoaderScreen();
         let formData = this.state;
         this.props.contractName.methods.produceProduct(
             formData.prodName,
@@ -44,12 +47,15 @@ export default class ProductBatchForm extends React.Component {
         .then((receipt) => {
             this.props.setTransactionSuccess(true);
             console.log(receipt);
+            this.props.hideLoaderScreen();
+            this.props.closePopup();
         })
         .catch((error) => {
             this.props.setTransactionSuccess(false);
             console.log(error);
+            this.props.hideLoaderScreen();
+            this.props.closePopup();
           });
-        this.props.closePopup();
     }
 
     handleInput(input){
@@ -71,7 +77,7 @@ export default class ProductBatchForm extends React.Component {
                 <center>
                     <DialogTitle id="scroll-dialog-title">Enter Batch Details</DialogTitle>
                 </center>
-                <form onSubmit={() => this.createProductBatch()} className="form-grid"> 
+                <form onSubmit={(event) => this.createProductBatch(event)} className="form-grid"> 
                     <DialogContent dividers={true}>
                         <DialogContentText
                             id="scroll-dialog-description"

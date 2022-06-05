@@ -45,3 +45,9 @@
   margin-right: 0px;
   margin-left: auto;
 }
+
+/* Disables error stacktrace from showing up in dev mode. */
+iframe
+{
+    display: none;
+}
