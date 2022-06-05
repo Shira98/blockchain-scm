@@ -13,6 +13,9 @@ import PerformStatusAction from './PerformStatusAction';
 import BatchTable from './BatchTable';
 import ToastMessage from "./ToastMessage";
 import TabPanel from "./TabPanel";
+import ErrorBoundary from "./ErrorBoundary";
+
+import { CircularPageLoader } from "./static/CircularPageLoader";
 
 const cols = [
   { field: "productName", title: "Product Name", numeric: false, align: "left" },
@@ -37,6 +40,7 @@ export default class Home extends React.Component {
         showAddBatch: false,
         showConfirmAction: false,
         showBatchDetails: false,
+        showLoader: false,
         productRow: null,
         actionState: null,
         productId: null,
@@ -95,17 +99,29 @@ export default class Home extends React.Component {
         return rows;
     }
 
-    toggleAddBatchPopUp() {
+    showAddBatchPopUp() {
         this.setState({
-            showAddBatch: !this.state.showAddBatch
+            showAddBatch: true
         });
     }
 
-    toggleConfirmActionPopUp(action, prodId) {
+    hideAddBatchPopUp() {
         this.setState({
-            showConfirmAction: !this.state.showConfirmAction,
+            showAddBatch: false
+        });
+    }
+
+    showConfirmActionPopUp(action, prodId) {
+        this.setState({
+            showConfirmAction: true,
             actionState: action,
             productId: prodId
+        });
+    }
+
+    hideConfirmActionPopUp(action, prodId) {
+        this.setState({
+            showConfirmAction: false
         });
     }
 
@@ -113,6 +129,18 @@ export default class Home extends React.Component {
         this.setState({
             showBatchDetails: !this.state.showBatchDetails,
             productRow: prodRow
+        });
+    }
+
+    showLoader(){
+        this.setState({
+            showLoader: true
+        });
+    }
+
+    hideLoader(){
+        this.setState({
+            showLoader: false
         });
     }
 
@@ -152,14 +180,14 @@ export default class Home extends React.Component {
                 </AppBar>
                 
                 <TabPanel value={this.state.tabValue} index={0} count={2}>
-                    <Button variant="outlined" onClick={() => this.toggleAddBatchPopUp()}>Produce a Batch</Button>
+                    <Button variant="outlined" onClick={() => this.showAddBatchPopUp()}>Produce a Batch</Button>
                     <br/>
                     <br/>
                     <BatchTable 
                         rows={activeBatches} 
                         cols={cols} 
                         toggleBatchDetailsPopUp={(prodRow) => this.toggleBatchDetailsPopUp(prodRow)} 
-                        toggleConfirmActionPopUp={(action, id) => this.toggleConfirmActionPopUp(action, id)}
+                        showConfirmActionPopUp={(action, id) => this.showConfirmActionPopUp(action, id)}
                         emptyRowsMessage="No batches yet. Try producing a batch."
                     />
                 </TabPanel>
@@ -169,7 +197,7 @@ export default class Home extends React.Component {
                         rows={previousBatches} 
                         cols={cols} 
                         toggleBatchDetailsPopUp={(prodRow) => this.toggleBatchDetailsPopUp(prodRow)} 
-                        toggleConfirmActionPopUp={(action, id) => this.toggleConfirmActionPopUp(action, id)}
+                        showConfirmActionPopUp={(action, id) => this.showConfirmActionPopUp(action, id)}
                         emptyRowsMessage="No history batches yet. Try selling a batch."
                     />
                 </TabPanel>
@@ -177,12 +205,21 @@ export default class Home extends React.Component {
                 {/* Pop-ups & Toasts*/}
 
                 {this.state.showAddBatch ? 
-                    <ProductBatchForm 
-                        open={this.state.showAddBatch} 
-                        closePopup={() => this.toggleAddBatchPopUp()}
-                        contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
-                        currentAddress={this.props.drizzleState.accounts[0]}
-                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)}/>
+                    <ErrorBoundary 
+                        hideLoaderScreen={() => this.hideLoader()} 
+                        hideDialog={() => this.hideAddBatchPopUp()}
+                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                    >
+                        <ProductBatchForm 
+                            open={this.state.showAddBatch} 
+                            closePopup={() => this.hideAddBatchPopUp()}
+                            contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                            currentAddress={this.props.drizzleState.accounts[0]}
+                            showLoaderScreen={() => this.showLoader()}
+                            hideLoaderScreen={() => this.hideLoader()}
+                            setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                        />
+                    </ErrorBoundary>
                     : null
                 }
 
@@ -195,14 +232,23 @@ export default class Home extends React.Component {
                 }
 
                 {this.state.showConfirmAction ? 
-                    <PerformStatusAction 
-                        open={this.state.showConfirmAction} 
-                        closePopup={() => this.toggleConfirmActionPopUp()} 
-                        contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
-                        action={this.state.actionState}
-                        productId={this.state.productId}
-                        currentAddress={this.props.drizzleState.accounts[0]}
-                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)} />
+                    <ErrorBoundary 
+                        hideLoaderScreen={() => this.hideLoader()} 
+                        hideDialog={() => this.hideConfirmActionPopUp()}
+                        setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                    >
+                        <PerformStatusAction 
+                            open={this.state.showConfirmAction} 
+                            closePopup={() => this.hideConfirmActionPopUp()} 
+                            contractName={this.props.drizzle.contracts.SupplyChainLifecycle}
+                            action={this.state.actionState}
+                            productId={this.state.productId}
+                            currentAddress={this.props.drizzleState.accounts[0]}
+                            showLoaderScreen={() => this.showLoader()}
+                            hideLoaderScreen={() => this.hideLoader()}
+                            setTransactionSuccess={(status) => this.setTransactionSuccess(status)}
+                        />
+                    </ErrorBoundary>
                     : null
                 }
 
@@ -218,12 +264,17 @@ export default class Home extends React.Component {
                 {this.state.transactionSuccess === false ? 
                     <ToastMessage 
                         open={this.state.transactionSuccess === false} 
-                        toastMessage="Transaction failed!"
+                        toastMessage="Transaction failed! Please check your connection and try again."
                         bgColor='#eb535e'
                         closeToastMessage={() => this.closeToastMessage()}
                     />
                     : null
                 }
+        
+                <CircularPageLoader 
+                    open={this.state.showLoader} 
+                />
+                  
             </Paper>
         )
     };

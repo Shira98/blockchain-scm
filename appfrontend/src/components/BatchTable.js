@@ -61,7 +61,7 @@ export default class BatchTable extends React.Component {
                                                     variant="outlined" 
                                                     color='secondary' 
                                                     disabled={row.disableActionButton}
-                                                    onClick={() => this.props.toggleConfirmActionPopUp(row.action, row.productId)}>{row.action}</Button>
+                                                    onClick={() => this.props.showConfirmActionPopUp(row.action, row.productId)}>{row.action}</Button>
                                             </TableCell>
                                             <TableCell align="center" width="20%">
                                                 <Button 

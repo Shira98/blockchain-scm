@@ -18,7 +18,7 @@ export default class ToastMessage extends React.Component {
                     horizontal: 'center',
                 }}
                 open={this.props.open}
-                autoHideDuration={2000}
+                autoHideDuration={3000}
                 onClose={() => this.props.closeToastMessage()}
             >
                 <SnackbarContent 

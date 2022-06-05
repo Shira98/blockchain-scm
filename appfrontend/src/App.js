@@ -4,11 +4,12 @@ import { Drizzle } from "@drizzle/store";
 import drizzleOptions from "./drizzleOptions";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import Profile from "./components/Profile";
 import Home from "./components/Home";
+
 import Header from "./components/static/Header";
 import Footer from "./components/static/Footer";
 import { PageLoader } from "./components/static/PageLoader";
-import Profile from "./components/Profile";
 import NotFound from "./components/static/NotFound";
 
 import "./css/App.css";
