@@ -2,11 +2,15 @@
 pragma solidity >=0.4.21 <0.9.0;
 pragma experimental ABIEncoderV2;
 
+import "./Producer.sol";
+import "./Retailer.sol";
+import "./Distributor.sol";
+
 /**
  * @title SupplyChainLifecycle
  * @dev Deals with product life cycle statuses for all the parties involved.
  */
-contract SupplyChainLifecycle {
+contract SupplyChainLifecycle is Producer, Retailer, Distributor {
 
     enum Status { 
         PRODUCED,
@@ -48,7 +52,10 @@ contract SupplyChainLifecycle {
    }
 
    /*Set of functions to update product statuses.*/
-   function produceProduct(string memory prodName, string memory prodDesc, uint prodPrice, uint prodQty, address producerAdd) public {
+   //Accessible by - 
+   //       - Producers
+    function produceProduct(string memory prodName, string memory prodDesc,
+                            uint prodPrice, uint prodQty, address producerAdd) public isProducer {
        products.push(Product({
            productStatus: Status.PRODUCED,
            currentStatusUser: producerAdd,
@@ -67,22 +74,43 @@ contract SupplyChainLifecycle {
        emit Produced(productID);
    }
 
+    //Accesible by -
+    //      - Retailer
+    //      - Distributor
     function pickUpProduct(uint prodId) public {
-        products[prodId].productStatus = Status.PICKED_UP;
-        products[prodId].currentStatusUser = msg.sender;
+        require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
+        if(isRetailer()) {
+            products[prodId].productStatus = Status.PICKED_UP;
+            products[prodId].currentStatusUser = msg.sender;
+            products[prodId].retailerAddresses = msg.sender;
+        }
+
+        if(isDistributor()) {
+            products[prodId].productStatus = Status.PICKED_UP;
+            products[prodId].currentStatusUser = msg.sender;
+            products[prodId].distributorAddress = msg.sender;
+        }
         emit PickedUp(prodId);
    }
 
-    function buyProduct(uint prodId) public {
+    //Accesible by -
+    //      - Retailer
+    //      - Distributor
+    //      - Consumer (should be a sell button at retailer's side)
+    function buyProduct(uint prodId) public payable {
+        require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
         products[prodId].productStatus = Status.PAID;
         products[prodId].currentStatusUser = msg.sender;
         emit Paid(prodId);
    }
-
+    //Accesible by -
+    //      - Retailer
+    //      - Distributor
     function receiveProduct(uint prodId) public {
-       products[prodId].productStatus = Status.RECEIVED;
-       products[prodId].currentStatusUser = msg.sender;
-       emit Received(prodId);
+        require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
+        products[prodId].productStatus = Status.RECEIVED;
+        products[prodId].currentStatusUser = msg.sender;
+        emit Received(prodId);
    }
 
     /* Getters. */
@@ -92,6 +120,6 @@ contract SupplyChainLifecycle {
     } 
 
     function getAllProductDetails() public view returns (Product[] memory) {
-       return products;
+       return products; //filter based on the address of current user's role.
     } 
 }

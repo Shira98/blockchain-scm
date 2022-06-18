@@ -1,14 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <0.9.0;
 
+import "./Users.sol";
+
+/**
+ * @title Producer
+ * @dev Handles producer functions.
+ */
 contract Producer {
-    event StorageSet(string _message);
+   
+    using Users for Users.User;
+    Users.User private producers;
 
-    uint256 public storedData;
+    constructor() public {
+        addProducer(msg.sender);
+    }
 
-    function set(uint256 x) public {
-        storedData = x;
+    function addProducer(address newProducer) public {
+        require(!producers.isExistingUser(newProducer), "Producer with this address already exists!");
+        producers.addUser(newProducer);
+    }
 
-        emit StorageSet("Data stored successfully!");
+    modifier isProducer() {
+        require(producers.isExistingUser(msg.sender), "Not a producer.");
+        _;
     }
 }

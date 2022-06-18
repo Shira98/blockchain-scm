@@ -30,6 +30,7 @@ export default class ProductBatchForm extends React.Component {
         //Prevents reloading of the entire page after submission.
         event.preventDefault();
         this.props.showLoaderScreen();
+        console.log(this.props.currentAddress);
         let formData = this.state;
         this.props.contractName.methods.produceProduct(
             formData.prodName,

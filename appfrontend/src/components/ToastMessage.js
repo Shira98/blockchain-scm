@@ -5,7 +5,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 
 
 /**
- * Component to show a toast/snackbar at the bottom of the screen after every successful transaction.
+ * Component to show a toast/snackbar at the bottom of the screen after every transaction.
  * 
  * @author syuki
  */

@@ -1,14 +1,27 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <0.9.0;
 
+import "./Users.sol";
+
+/**
+ * @title Distributor
+ * @dev Handles distributor functions.
+ */
 contract Distributor {
-    event StorageSet(string _message);
+    
+    using Users for Users.User;
+    Users.User private distributors;
 
-    uint256 public storedData;
-
-    function set(uint256 x) public {
-        storedData = x;
-
-        emit StorageSet("Data stored successfully!");
+    constructor() public {
+        addDistributor(msg.sender);
     }
+
+    function addDistributor(address newDistributor) public {
+        require(!distributors.isExistingUser(newDistributor), "Distributor with this address already exists!");
+        distributors.addUser(newDistributor);
+    }
+
+    function isDistributor() public view returns (bool) {
+    return distributors.isExistingUser(msg.sender);
+  }
 }
