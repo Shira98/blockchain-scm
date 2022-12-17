@@ -3,7 +3,6 @@ import React from "react";
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
-
 /**
  * Component to show a toast/snackbar at the bottom of the screen after every transaction.
  * 

@@ -2,15 +2,9 @@ import React from "react";
 import { DrizzleContext } from "@drizzle/react-plugin";
 import { Drizzle } from "@drizzle/store";
 import drizzleOptions from "./drizzleOptions";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Profile from "./components/Profile";
-import Home from "./components/Home";
-
-import Header from "./components/static/Header";
-import Footer from "./components/static/Footer";
 import { PageLoader } from "./components/static/PageLoader";
-import NotFound from "./components/static/NotFound";
+import { InitializedContent } from "./components/InitializedContent";
 
 import "./css/App.css";
 
@@ -23,6 +17,11 @@ const drizzle = new Drizzle(drizzleOptions);
  * @author syuki
  */
 const App = () => {
+
+    window.ethereum.on('accountsChanged',async (accounts) =>{
+        window.location.reload(false);
+    });
+
     return (
         <DrizzleContext.Provider drizzle={drizzle}>
             <DrizzleContext.Consumer>
@@ -35,19 +34,11 @@ const App = () => {
                             return (<PageLoader />)
                         }
 
-                        return (
-                            <Router>
-                                <Header />
-                                <div className="main-body" color="primary">
-                                    <Routes>
-                                        <Route exact path="/" element={<Home drizzle={drizzle} drizzleState={drizzleState} />} /> 
-                                        <Route exact path="/profile" element={<Profile drizzle={drizzle} drizzleState={drizzleState} />} />   
-                                        <Route path="*" element={<NotFound />} />
-                                    </Routes>
-                                </div>
-                                <Footer />
-                            </Router>
-                        )
+                        return(<InitializedContent 
+                                    drizzle={drizzle} 
+                                    drizzleState={drizzleState} 
+                                />
+                            )
                     }
                 }
             </DrizzleContext.Consumer>

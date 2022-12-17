@@ -30,7 +30,6 @@ export default class ProductBatchForm extends React.Component {
         //Prevents reloading of the entire page after submission.
         event.preventDefault();
         this.props.showLoaderScreen();
-        console.log(this.props.currentAddress);
         let formData = this.state;
         this.props.contractName.methods.produceProduct(
             formData.prodName,
@@ -166,15 +165,15 @@ export default class ProductBatchForm extends React.Component {
                                             variant="contained" 
                                             className="nf-button" 
                                             color="primary" 
-                                            type="submit">Create</Button>
-                                    </Grid>
+                                            onClick={this.props.closePopup}>Close</Button>
+                                    </Grid> 
                                     <Grid item xs={3}>
                                         <Button 
                                             variant="contained" 
                                             className="nf-button" 
                                             color="primary" 
-                                            onClick={this.props.closePopup}>Close</Button>
-                                    </Grid> 
+                                            type="submit">Produce</Button>
+                                    </Grid>
                                 </Grid>
                             </DialogActions>
                         </div>

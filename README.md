@@ -28,7 +28,7 @@ To know more about what's part of the frontend code, check out the README file i
 
 ### Install the Required Dependencies
 
-- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies.
+- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies. If a dependency conflict between react and material-ui versions pops up, install them forcefully with `npm install --force`.
 - Additionally, install Truffle for managing contracts using `npm install truffle@5.5.12 -g`.
 - Install the Ganache client from Truffle's [official website](https://trufflesuite.com/ganache/).
 

@@ -13,10 +13,6 @@ contract Retailer {
 
    Users.User private retailers;
 
-   constructor() public {
-    addRetailer(msg.sender);
-  }
-
   function addRetailer(address newRetailer) public {
     require(!retailers.isExistingUser(newRetailer), "Retailer with this address already exists!");
     retailers.addUser(newRetailer);

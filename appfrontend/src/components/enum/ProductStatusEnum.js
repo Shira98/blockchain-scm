@@ -1,25 +1,33 @@
 /**
- * An enum component for the entire front-end code.
+ * An enum component for holding product status details.
  * 
  * @author syuki
  */
 
 /**
- * Actions available to the party that's selling the product - all indicators, not actions.
+ * Actions available to the party that's selling the product - all of these are indicators, not actions.
  */
 export const PRODUCT_STATUSES = {
-    0: "READY FOR PICKUP", 
-    1: "PICKED UP",
-    2: "DELIVERED",
-    3: "SOLD" 
+    0: "PRODUCED",
+    1: "READY FOR PICKUP",
+    2: "PICKED UP",
+    3: "SHIPMENT RELEASED",
+    4: "SHIPMENT RECEIVED",
+    5: "READY FOR SALE",
+    6: "PAID",
+    7: "SOLD" 
 };
 
 /**
- * Actions available to the party that's buying the product.
+ * Actions available to the parties involved based on product statuses.
  */
 export const STATUS_ACTIONS = {
-    0: "PICK UP",
-    1: "RECEIVE",
-    2: "PAY",
-    3: "PAID" 
+    0: "ENABLE PICKUP",
+    1: "PICK UP",
+    2: "SHIP",
+    3: "RECEIVE SHIPMENT",
+    4: "ENABLE FOR SALE",
+    5: "PAY",
+    6: "SELL",
+    7: "-" //No action.
 };

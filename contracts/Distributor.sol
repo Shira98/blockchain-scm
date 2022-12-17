@@ -12,10 +12,6 @@ contract Distributor {
     using Users for Users.User;
     Users.User private distributors;
 
-    constructor() public {
-        addDistributor(msg.sender);
-    }
-
     function addDistributor(address newDistributor) public {
         require(!distributors.isExistingUser(newDistributor), "Distributor with this address already exists!");
         distributors.addUser(newDistributor);

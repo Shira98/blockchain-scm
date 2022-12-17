@@ -12,17 +12,12 @@ contract Producer {
     using Users for Users.User;
     Users.User private producers;
 
-    constructor() public {
-        addProducer(msg.sender);
-    }
-
     function addProducer(address newProducer) public {
         require(!producers.isExistingUser(newProducer), "Producer with this address already exists!");
         producers.addUser(newProducer);
     }
 
-    modifier isProducer() {
-        require(producers.isExistingUser(msg.sender), "Not a producer.");
-        _;
+    function isProducer() public view returns (bool) {
+        return producers.isExistingUser(msg.sender);
     }
 }

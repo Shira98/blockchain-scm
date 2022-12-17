@@ -12,10 +12,6 @@ contract Consumer {
     using Users for Users.User;
     Users.User private consumers;
 
-    constructor() public {
-        addConsumerr(msg.sender);
-    }
-
     function addConsumerr(address newConsumer) public {
         require(!consumers.isExistingUser(newConsumer), "Consumer with this address already exists!");
         consumers.addUser(newConsumer);

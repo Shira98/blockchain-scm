@@ -13,10 +13,14 @@ import "./Distributor.sol";
 contract SupplyChainLifecycle is Producer, Retailer, Distributor {
 
     enum Status { 
-        PRODUCED,
-        PICKED_UP,
-        RECEIVED,
-        PAID
+        PRODUCED, 
+        READY_FOR_PICKUP, 
+        PICKED_UP, 
+        SHIPMENT_RELEASED, 
+        RECEIVED_SHIPMENT, 
+        READY_FOR_SALE, 
+        PAID,
+        SOLD 
     }
 
     //Define the product of this supply chain.
@@ -34,29 +38,33 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
         address consumerAddress;
     }
 
-   Status constant initialStatus = Status.PRODUCED;
-   uint productID;
+    Status constant initialStatus = Status.PRODUCED;
+    uint productID;
 
-   Product[] public products;
+    Product[] public products;
 
-   //Define events to emit based on statuses, linked by the product ID.
-   event Produced(uint productID);
-   event PickedUp(uint productID);
-   event Sold(uint productID);
-   event Released(uint productID);
-   event Received(uint productID);
-   event Paid(uint productID);
+    //Define events to emit based on statuses, linked by the product ID.
+    event Produced(uint productID);
+    event ReadyForPickup(uint productID);
+    event PickedUp(uint productID);
+    event ShipmentReleased(uint productID);
+    event ShipmentReceived(uint productID);
+    event ReadyForSale(uint productID);
+    event Paid(uint productID);
+    event Sold(uint productID);
 
    constructor() public payable {
        productID = 0;
    }
 
    /*Set of functions to update product statuses.*/
+   
    //Accessible by - 
-   //       - Producers
+   //       - Producer
     function produceProduct(string memory prodName, string memory prodDesc,
-                            uint prodPrice, uint prodQty, address producerAdd) public isProducer {
-       products.push(Product({
+                            uint prodPrice, uint prodQty, address producerAdd) public {
+        require(isProducer(), "Not a producer");
+        products.push(Product({
            productStatus: Status.PRODUCED,
            currentStatusUser: producerAdd,
            productId: productID,
@@ -74,43 +82,70 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
        emit Produced(productID);
    }
 
-    //Accesible by -
-    //      - Retailer
+    //Accessible by -
+    //      - Producer
+    function markProductReadyForPickup(uint prodId) public {
+        require(isProducer(), "Not a producer.");
+        products[prodId].productStatus = Status.READY_FOR_PICKUP;
+        products[prodId].currentStatusUser = msg.sender;
+        emit ReadyForPickup(prodId);
+   }
+
+    //Accessible by -
     //      - Distributor
     function pickUpProduct(uint prodId) public {
-        require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
-        if(isRetailer()) {
-            products[prodId].productStatus = Status.PICKED_UP;
-            products[prodId].currentStatusUser = msg.sender;
-            products[prodId].retailerAddresses = msg.sender;
-        }
-
-        if(isDistributor()) {
-            products[prodId].productStatus = Status.PICKED_UP;
-            products[prodId].currentStatusUser = msg.sender;
-            products[prodId].distributorAddress = msg.sender;
-        }
+        require(isDistributor(), "Not a distributor.");
+        products[prodId].productStatus = Status.PICKED_UP;
+        products[prodId].currentStatusUser = msg.sender;
+        products[prodId].distributorAddress = msg.sender;
         emit PickedUp(prodId);
    }
 
-    //Accesible by -
+    //Accessible by -
     //      - Retailer
     //      - Distributor
-    //      - Consumer (should be a sell button at retailer's side)
     function buyProduct(uint prodId) public payable {
         require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
         products[prodId].productStatus = Status.PAID;
         products[prodId].currentStatusUser = msg.sender;
         emit Paid(prodId);
    }
-    //Accesible by -
-    //      - Retailer
+
+    //Accessible by -
     //      - Distributor
-    function receiveProduct(uint prodId) public {
-        require(isRetailer() || isDistributor(), "Neither a retailer nor a distributor.");
-        products[prodId].productStatus = Status.RECEIVED;
+    function releaseProductShipment(uint prodId) public {
+        require(isDistributor(), "Not a distributor.");
+        products[prodId].productStatus = Status.SHIPMENT_RELEASED;
         products[prodId].currentStatusUser = msg.sender;
-        emit Received(prodId);
+        emit ShipmentReleased(prodId);
+   } 
+
+    //Accessible by -
+    //      - Retailer
+    function receiveProductShipment(uint prodId) public {
+        require(isRetailer(), "Not a retailer.");
+        products[prodId].productStatus = Status.RECEIVED_SHIPMENT;
+        products[prodId].currentStatusUser = msg.sender;
+        products[prodId].retailerAddresses = msg.sender;
+        emit ShipmentReceived(prodId);
+   }
+
+    //Accessible by -
+    //      - Retailer
+    function markProductReadyForSale(uint prodId) public {
+        require(isRetailer(), "Not a retailer.");
+        products[prodId].productStatus = Status.READY_FOR_SALE;
+        products[prodId].currentStatusUser = msg.sender;
+        emit ReadyForSale(prodId);
+   }
+
+   //Accessible by -
+    //      - Retailer
+    function sellProductToConsumer(uint prodId) public payable {
+        require(isRetailer(), "Not a retailer.");
+        products[prodId].productStatus = Status.SOLD;
+        products[prodId].currentStatusUser = msg.sender;
+        emit Sold(prodId);
    }
 
     /* Getters. */
@@ -120,6 +155,6 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
     } 
 
     function getAllProductDetails() public view returns (Product[] memory) {
-       return products; //filter based on the address of current user's role.
+       return products;
     } 
 }

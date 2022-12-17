@@ -16,15 +16,15 @@ const NotFound = () => {
     const navigate = useNavigate();
 
     return(
-        <div className="not-found">
+        <div className="main-body not-found" color="primary">
             <img src="/404.png" alt="404"/>
             <h2>Oops! Looks like the page you're looking for doesn't exist.</h2>
             <Grid container justifyContent="center">
-                <Grid item xs={3}>
+                <Grid item xs={3} style={{ marginBottom: 20 }}>
                     <Button variant="outlined" className="nf-button" onClick={() => navigate(-1)}>Go Back</Button>
                 </Grid>
-                <Grid item xs={3}>
-                    <Button variant="outlined" className="nf-button" onClick={() => navigate("/")}>Home</Button>
+                <Grid item xs={3} style={{ marginBottom: 20 }}>
+                    <Button variant="outlined" className="nf-button" onClick={() => navigate("/")}>Go Home</Button>
                 </Grid>
             </Grid>
         </div>
