@@ -32,7 +32,7 @@ jobs:
       run: npm ci
       
     - name: Install Dependencies from Frontend Lockfile
-      run: npm ci
+      run: npm ci --force
       working-directory: appfrontend
       
     - name: Compile Smart Contracts
