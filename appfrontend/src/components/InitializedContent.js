@@ -77,7 +77,7 @@ export const InitializedContent = ({drizzle, drizzleState}) => {
     }
 
     //Registered users are redirected to the home page, un-registered users go to the sign-up page.
-    if(isAuth != undefined) {
+    if(isAuth !== undefined) {
         return (
             <Router>
                 <Header isAuthenticated={isAuth} /> 
