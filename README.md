@@ -46,7 +46,7 @@ For more commands, please refer to Truffle's [guides and tutorials](https://truf
 Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`.
 
 ## Current Functionalities
-Currently uses the first available address to carry out these functionalities.
+Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts.
 
 Users can -
 - create a new batch of products,

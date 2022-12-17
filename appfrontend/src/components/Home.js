@@ -82,30 +82,30 @@ export default class Home extends React.Component {
     //Maps available actions based on product statuses for each user type.
     fetchProductStatusActions(productDetails){
         let statusAction = STATUS_ACTIONS[productDetails["productStatus"]];
-        if(this.props.userType === USER_TYPES[0]){
+        if(this.props.userType == USER_TYPES[0]){
             if(productDetails["productStatus"] > 0){
                 statusAction = STATUS_ACTIONS[7];
             }
         }
-        if(this.props.userType === USER_TYPES[1]){
-            if(productDetails["productStatus"] === 2){
+        if(this.props.userType == USER_TYPES[1]){
+            if(productDetails["productStatus"] == 2){
                 statusAction = STATUS_ACTIONS[5];
             }
-            else if(productDetails["productStatus"] === 6 
-                && productDetails["retailerAddresses"] === this.state.addressZero){
+            else if(productDetails["productStatus"] == 6 
+                && productDetails["retailerAddresses"] == this.state.addressZero){
                 statusAction = STATUS_ACTIONS[2];
             } else if(productDetails["productStatus"] > 2){
                 statusAction = STATUS_ACTIONS[7];
             }
         }
-        if(this.props.userType === USER_TYPES[2]){
-            if(productDetails["productStatus"] === 4
-                && productDetails["retailerAddresses"] !== this.state.addressZero){
+        if(this.props.userType == USER_TYPES[2]){
+            if(productDetails["productStatus"] == 4
+                && productDetails["retailerAddresses"] != this.state.addressZero){
                 statusAction = STATUS_ACTIONS[5];
-            } else if (productDetails["productStatus"] === 6 
-                        && productDetails["retailerAddresses"] !== this.state.addressZero){
+            } else if (productDetails["productStatus"] == 6 
+                        && productDetails["retailerAddresses"] != this.state.addressZero){
                 statusAction = STATUS_ACTIONS[4];
-            } else if (productDetails["productStatus"] === 5){
+            } else if (productDetails["productStatus"] == 5){
                 statusAction = STATUS_ACTIONS[6];
             } else if(productDetails["productStatus"] > 6) {
                 statusAction = STATUS_ACTIONS[7];
@@ -118,20 +118,20 @@ export default class Home extends React.Component {
     fetchProductStatuses(productDetails) {
         let productStatuses = PRODUCT_STATUSES[productDetails["productStatus"]];
         //Abstracts all statuses after payment to SOLD. 
-        if(this.props.userType === USER_TYPES[0]){
+        if(this.props.userType == USER_TYPES[0]){
             if(productDetails["productStatus"] > 2) {
                 productStatuses = PRODUCT_STATUSES[7];
             }
         }
-        if(this.props.userType === USER_TYPES[1]){
+        if(this.props.userType == USER_TYPES[1]){
             //Manages payment statuses - PAID and SOLD, depending on the user type.
-            if(productDetails["productStatus"] === 6 
-                && productDetails["retailerAddresses"] === this.state.addressZero){
+            if(productDetails["productStatus"] == 6 
+                && productDetails["retailerAddresses"] == this.state.addressZero){
                 productStatuses = PRODUCT_STATUSES[6];
             } 
             //Abstracts all statuses after payment to SOLD. 
             else if(productDetails["productStatus"] > 4 
-                && productDetails["retailerAddresses"] !== this.state.addressZero){
+                && productDetails["retailerAddresses"] != this.state.addressZero){
                 productStatuses = PRODUCT_STATUSES[7];
             }
         }
@@ -168,29 +168,29 @@ export default class Home extends React.Component {
 
     fetchActiveBatches(rows) {
         //Non-active batches for producers = Sold batches. 
-        if(this.props.userType === USER_TYPES[0]){
-            return rows.filter((row) => row.productStatus !== PRODUCT_STATUSES[7]).reverse();
+        if(this.props.userType == USER_TYPES[0]){
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[7]).reverse();
         }
         //Non-active and unrelated batches for distributor = Sold batches and batches yet to be 
         //enabled for pickup. 
-        if(this.props.userType === USER_TYPES[1]){
-            return rows.filter((row) => row.productStatus !== PRODUCT_STATUSES[0] 
-                                        && row.productStatus !== PRODUCT_STATUSES[7]).reverse();
+        if(this.props.userType == USER_TYPES[1]){
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[0] 
+                                        && row.productStatus != PRODUCT_STATUSES[7]).reverse();
         }
         //Non-active and unrelated batches for retailer = Sold batches and batches yet to be 
         //released for shipping. 
-        if(this.props.userType === USER_TYPES[2]){
-            return rows.filter((row) => row.productStatus !== PRODUCT_STATUSES[0]
-                                        && row.productStatus !== PRODUCT_STATUSES[1]
-                                        && row.productStatus !== PRODUCT_STATUSES[2]
-                                        && row.productStatus !== PRODUCT_STATUSES[7]).reverse();
+        if(this.props.userType == USER_TYPES[2]){
+            return rows.filter((row) => row.productStatus != PRODUCT_STATUSES[0]
+                                        && row.productStatus != PRODUCT_STATUSES[1]
+                                        && row.productStatus != PRODUCT_STATUSES[2]
+                                        && row.productStatus != PRODUCT_STATUSES[7]).reverse();
         }
         return rows.filter((row) => !row.disableActionButton).reverse();
     }
 
     //Filters all the sold batches for all of the user types.
     fetchPreviousBatches(rows) {
-        return rows.filter((row) => row.productStatus === PRODUCT_STATUSES[7]).reverse();
+        return rows.filter((row) => row.productStatus == PRODUCT_STATUSES[7]).reverse();
     }
 
     showAddBatchPopUp() {
@@ -252,7 +252,7 @@ export default class Home extends React.Component {
 
     fetchEmptyTableString(){
         let string = "No batches available yet. ";
-        if(this.props.userType === USER_TYPES[0]){
+        if(this.props.userType == USER_TYPES[0]){
             string+="Try producing a batch.";
         } else {
             string = "No batches available for buying yet.";
@@ -295,7 +295,7 @@ export default class Home extends React.Component {
                         </AppBar>
                         
                         <TabPanel value={this.state.tabValue} index={0} count={2}>
-                            { this.props.userType === USER_TYPES[0] ? 
+                            { this.props.userType == USER_TYPES[0] ? 
                                 <Button variant="outlined" onClick={() => this.showAddBatchPopUp()}>Produce a Batch</Button>
                                 : null
                             }
