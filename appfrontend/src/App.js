@@ -18,10 +18,6 @@ const drizzle = new Drizzle(drizzleOptions);
  */
 const App = () => {
 
-    window.ethereum.on('accountsChanged',async (accounts) =>{
-        window.location.reload(false);
-    });
-
     return (
         <DrizzleContext.Provider drizzle={drizzle}>
             <DrizzleContext.Consumer>

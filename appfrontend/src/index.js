@@ -55,6 +55,10 @@ ReactDOM.render(
 </ThemeProvider>, 
 document.getElementById('root'));
 
+window.ethereum.on('accountsChanged',async (accounts) =>{
+    window.location.reload(false);
+});
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
