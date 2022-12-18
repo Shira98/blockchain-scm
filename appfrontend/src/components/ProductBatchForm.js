@@ -165,15 +165,15 @@ export default class ProductBatchForm extends React.Component {
                                             variant="contained" 
                                             className="nf-button" 
                                             color="primary" 
-                                            type="submit">Create</Button>
-                                    </Grid>
+                                            onClick={this.props.closePopup}>Close</Button>
+                                    </Grid> 
                                     <Grid item xs={3}>
                                         <Button 
                                             variant="contained" 
                                             className="nf-button" 
                                             color="primary" 
-                                            onClick={this.props.closePopup}>Close</Button>
-                                    </Grid> 
+                                            type="submit">Produce</Button>
+                                    </Grid>
                                 </Grid>
                             </DialogActions>
                         </div>
