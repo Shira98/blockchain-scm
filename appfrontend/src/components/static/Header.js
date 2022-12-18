@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
+import { USER_TYPES } from '../enum/UsersEnum';
+
 import Profile from '../Profile';
 
 import '../../css/App.css';
@@ -22,8 +24,17 @@ export default function Header({isAuthenticated, userType, drizzle, drizzleState
 
     const [showProfile, setShowProfile] = useState();
     const [anchorEl, setAnchorEl] = useState();
+    const [profilePicture, setProfilePicture] = useState();
 
     function toggleProfile(event) {
+        let profilePicturePath = "/profile-designs/Producer.png";
+        if(userType == USER_TYPES[1]){
+            profilePicturePath = "/profile-designs/Distributor.png";
+        } 
+        if(userType == USER_TYPES[2]){
+            profilePicturePath = "/profile-designs/Retailer.png";
+        } 
+        setProfilePicture(profilePicturePath);
         setShowProfile(!showProfile);
         setAnchorEl(event.currentTarget);
     }
@@ -60,6 +71,7 @@ export default function Header({isAuthenticated, userType, drizzle, drizzleState
                         drizzle={drizzle} 
                         drizzleState={drizzleState}
                         anchorEl={anchorEl}
+                        profilePicturePath={profilePicture}
                     />
                     : null
                 }   

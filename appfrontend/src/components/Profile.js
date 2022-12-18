@@ -3,7 +3,6 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 
-import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import "../css/Profile.css";
 
@@ -12,7 +11,7 @@ import "../css/Profile.css";
  * 
  * @author syuki
  */
-export default ({ drizzle, drizzleState, userType, close, open, anchorEl }) => {
+export default ({ drizzle, drizzleState, userType, close, open, anchorEl, profilePicturePath }) => {
     
     return(
         <Menu
@@ -31,7 +30,7 @@ export default ({ drizzle, drizzleState, userType, close, open, anchorEl }) => {
         >
             <div>
                 <center>
-                    <AccountCircle style={{ fontSize: 100 }} /> 
+                    <img className="profile-picture" src={profilePicturePath} alt="profile picture" />
                     <br/>
                     <Button 
                         variant="outlined" 
