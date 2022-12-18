@@ -31,7 +31,7 @@ To know more about what's part of the frontend code, check out the README file i
 - Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies. If a dependency conflict between react and material-ui versions pops up, install them forcefully with `npm install --force`.
 - Additionally, install Truffle for managing contracts using `npm install truffle@5.5.12 -g`.
 - Install the Ganache client from Truffle's [official website](https://trufflesuite.com/ganache/).
-- Get the MetaMask browser extension. Create a test network that points to the local Ganache network, import the Ganache accounts into MetaMask and use them to access the application.
+- Get the MetaMask browser extension. Create a test network that points to the local Ganache network, import the Ganache accounts into MetaMask and use them to access the application. Without MetaMask, the application takes the first Ganache address available.
 
 ### Configure the Project
 
@@ -47,7 +47,7 @@ For more commands, please refer to Truffle's [guides and tutorials](https://truf
 Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`. Register with one of the MetaMask accounts as either a producer, distributor, or a retailer. 
 
 ## Current Functionalities
-Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts.
+Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts. 
 
 In general, users can -
 - update the status of batches,

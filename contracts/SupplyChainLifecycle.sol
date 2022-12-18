@@ -63,7 +63,7 @@ contract SupplyChainLifecycle is Producer, Retailer, Distributor {
    //       - Producer
     function produceProduct(string memory prodName, string memory prodDesc,
                             uint prodPrice, uint prodQty, address producerAdd) public {
-        require(isProducer(), "Not a producer");
+        require(isProducer(), "Not a producer.");
         products.push(Product({
            productStatus: Status.PRODUCED,
            currentStatusUser: producerAdd,
