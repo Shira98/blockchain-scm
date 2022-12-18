@@ -1,11 +1,17 @@
-import React from 'react';  
+import React, { useState } from 'react';  
 import { NavLink } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';  
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+import { USER_TYPES } from '../enum/UsersEnum';
+
+import Profile from '../Profile';
 
 import '../../css/App.css';
 
@@ -14,7 +20,25 @@ import '../../css/App.css';
  * 
  * @author syuki
  */
-export default function Header({isAuthenticated}) {
+export default function Header({isAuthenticated, userType, drizzle, drizzleState}) {
+
+    const [showProfile, setShowProfile] = useState();
+    const [anchorEl, setAnchorEl] = useState();
+    const [profilePicture, setProfilePicture] = useState();
+
+    function toggleProfile(event) {
+        let profilePicturePath = "/profile-designs/Producer.png";
+        if(userType == USER_TYPES[1]){
+            profilePicturePath = "/profile-designs/Distributor.png";
+        } 
+        if(userType == USER_TYPES[2]){
+            profilePicturePath = "/profile-designs/Retailer.png";
+        } 
+        setProfilePicture(profilePicturePath);
+        setShowProfile(!showProfile);
+        setAnchorEl(event.currentTarget);
+    }
+
     if(!isAuthenticated){
         return null;
     } else {
@@ -32,13 +56,25 @@ export default function Header({isAuthenticated}) {
                                 <Typography noWrap>VIEW BATCHES</Typography>  
                             </IconButton>
                         </NavLink>
-                        <NavLink to="/profile" id="right-anchored-navlink" className="undecorated-links"> 
-                            <IconButton color="inherit">
-                                <AccountCircle style={{ fontSize: 40 }}/>
-                            </IconButton>
-                        </NavLink> 
+                        <IconButton color="inherit" id="right-anchored-menu-item" onClick={toggleProfile}>
+                            <AccountCircle style={{ fontSize: 40 }}/> 
+                            <ArrowDropDownIcon className="dropdown-arrow-icon" />
+                        </IconButton>
                     </Toolbar>
-                </AppBar>   
+                </AppBar>
+
+                {showProfile ? 
+                    <Profile 
+                        open={showProfile} 
+                        close={toggleProfile}
+                        userType={userType} 
+                        drizzle={drizzle} 
+                        drizzleState={drizzleState}
+                        anchorEl={anchorEl}
+                        profilePicturePath={profilePicture}
+                    />
+                    : null
+                }   
             </div>
         );
     }

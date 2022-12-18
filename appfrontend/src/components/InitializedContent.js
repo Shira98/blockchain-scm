@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Profile from "./Profile";
-import HomeWrapper from "./HomeWrapper";
+import HomeWrapper from "./wrapper/HomeWrapper";
+
 import Register from "./Register";
 import ConfirmRegistration from "./ConfirmRegistration";
 
@@ -80,7 +80,7 @@ export const InitializedContent = ({drizzle, drizzleState}) => {
     if(isAuth != undefined) {
         return (
             <Router>
-                <Header isAuthenticated={isAuth} /> 
+                <Header isAuthenticated={isAuth} userType={userType} drizzle={drizzle} drizzleState={drizzleState} /> 
                 <div>
                     <Routes>
                         {/* Registered users are redirected to the home page, un-registered users go to the register/sign-up page. */}
@@ -90,7 +90,6 @@ export const InitializedContent = ({drizzle, drizzleState}) => {
                         <Route exact path="/registration-success" element={<RegistrationSuccess isAuthenticated={isAuth} />} />   
                         <Route exact path="/registration-failure" element={<RegistrationFailure isAuthenticated={isAuth} />} />   
                         <Route exact path="/" element={<HomeWrapper drizzle={drizzle} drizzleState={drizzleState} isAuthenticated={isAuth} userType={userType} updateAuth={updateIsAuth} updateUserType={updateUserType} />} /> 
-                        <Route exact path="/profile" element={<Profile drizzle={drizzle} drizzleState={drizzleState} isAuthenticated={isAuth} userType={userType} />} />   
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
