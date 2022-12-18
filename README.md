@@ -28,9 +28,10 @@ To know more about what's part of the frontend code, check out the README file i
 
 ### Install the Required Dependencies
 
-- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies.
+- Clone the project and run `npm install` in both the root and `appfrontend` folders. This should install most of the required dependencies. If a dependency conflict between react and material-ui versions pops up, install them forcefully with `npm install --force`.
 - Additionally, install Truffle for managing contracts using `npm install truffle@5.5.12 -g`.
 - Install the Ganache client from Truffle's [official website](https://trufflesuite.com/ganache/).
+- Get the MetaMask browser extension. Create a test network that points to the local Ganache network, import the Ganache accounts into MetaMask and use them to access the application. Without MetaMask, the application takes the first Ganache address available.
 
 ### Configure the Project
 
@@ -43,17 +44,18 @@ To know more about what's part of the frontend code, check out the README file i
 For more commands, please refer to Truffle's [guides and tutorials](https://trufflesuite.com/docs/truffle/).
 
 ### Get the Frontend Running
-Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`.
+Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`. Register with one of the MetaMask accounts as either a producer, distributor, or a retailer. 
 
 ## Current Functionalities
-Currently uses the first available address to carry out these functionalities.
+Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts. 
 
-Users can -
-- create a new batch of products,
-- update the status of these batches,
+In general, users can -
+- update the status of batches,
 - view their basic profile details,
 - view the batch details after creation,
 - view active and sold (history) batches and their details.
+
+Producers can create batches of products and the rest of the users can buy and sell them.
 
 ## Enhancements
 Please check the repository's project board for ongoing and future enhancements.

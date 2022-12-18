@@ -23,13 +23,25 @@ export default class PerformStatusAction extends React.Component {
         if(action != null && this.props.contractName != null){
             switch(action) {
                 case STATUS_ACTIONS[0]:
-                    method = this.props.contractName.methods["pickUpProduct"];
+                    method = this.props.contractName.methods["markProductReadyForPickup"];
                     break;
                 case STATUS_ACTIONS[1]:
-                    method = this.props.contractName.methods["receiveProduct"];
+                    method = this.props.contractName.methods["pickUpProduct"];
                     break;
                 case STATUS_ACTIONS[2]:
+                    method = this.props.contractName.methods["releaseProductShipment"];
+                    break;
+                case STATUS_ACTIONS[3]:
+                    method = this.props.contractName.methods["receiveProductShipment"];
+                    break;
+                case STATUS_ACTIONS[4]:
+                    method = this.props.contractName.methods["markProductReadyForSale"];
+                    break;
+                case STATUS_ACTIONS[5]:
                     method = this.props.contractName.methods["buyProduct"];
+                    break;
+                case STATUS_ACTIONS[6]:
+                    method = this.props.contractName.methods["sellProductToConsumer"];
                     break;
             }
         }
@@ -94,11 +106,11 @@ export default class PerformStatusAction extends React.Component {
                         <DialogActions>
                             <Grid container color="secondary" className="form-grid"  justifyContent="center" >
                                 <Grid item xs={3}>
-                                    <Button variant="contained" className="nf-button" color="primary" onClick={this.confirmAction.bind(this)}>Confirm</Button>
-                                </Grid>
-                                <Grid item xs={3}>
                                     <Button variant="contained" className="nf-button" color="primary" onClick={this.props.closePopup}>Close</Button>
                                 </Grid> 
+                                <Grid item xs={3}>
+                                    <Button variant="contained" className="nf-button" color="primary" onClick={this.confirmAction.bind(this)}>Confirm</Button>
+                                </Grid>
                             </Grid>
                         </DialogActions>
                     </center>

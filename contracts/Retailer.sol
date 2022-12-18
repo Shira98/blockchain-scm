@@ -1,14 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <0.9.0;
 
+import "./Users.sol";
+
+/**
+ * @title Retailer
+ * @dev Handles retailer functions.
+ */
 contract Retailer {
-    event StorageSet(string _message);
+   
+   using Users for Users.User;
 
-    uint256 public storedData;
+   Users.User private retailers;
 
-    function set(uint256 x) public {
-        storedData = x;
+  function addRetailer(address newRetailer) public {
+    require(!retailers.isExistingUser(newRetailer), "Retailer with this address already exists!");
+    retailers.addUser(newRetailer);
+  }
 
-        emit StorageSet("Data stored successfully!");
-    }
+  function isRetailer() public view returns (bool) {
+    return retailers.isExistingUser(msg.sender);
+  }
 }

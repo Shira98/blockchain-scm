@@ -1,0 +1,32 @@
+.new-user-paper {
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    box-shadow: 5px;
+    padding: 40px 40px 40px 40px;
+    min-height: calc(100vh - 258px);
+    border-radius: 6px;
+    margin: auto;
+    min-width: 500px;
+    max-width: 700px;
+}
+
+p {
+    padding: 20px 20px 10px 20px;
+}
+
+.nf-button {
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+
+.ModalLink:hover {
+    text-decoration: none !important;
+    color: #2D323F !important;
+    font-weight: bolder;
+} 

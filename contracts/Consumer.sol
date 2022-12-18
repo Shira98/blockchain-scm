@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <0.9.0;
 
+import "./Users.sol";
+
+/**
+ * @title Consumer
+ * @dev Handles consumer functions.
+ */
 contract Consumer {
-    event StorageSet(string _message);
+    
+    using Users for Users.User;
+    Users.User private consumers;
 
-    uint256 public storedData;
-
-    function set(uint256 x) public {
-        storedData = x;
-
-        emit StorageSet("Data stored successfully!");
+    function addConsumerr(address newConsumer) public {
+        require(!consumers.isExistingUser(newConsumer), "Consumer with this address already exists!");
+        consumers.addUser(newConsumer);
     }
+
+    function isConsumer() public view returns (bool) {
+    return consumers.isExistingUser(msg.sender);
+  }
 }

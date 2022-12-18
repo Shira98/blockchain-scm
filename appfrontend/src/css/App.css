@@ -24,6 +24,14 @@
   text-decoration: none;
 }
 
+.undecorated-links p {
+  padding: 10px 20px 10px 20px;
+}
+
+.iconbutton button {
+  border-radius: 0;
+}
+
 #app-bar {
   background-color: #d4ccdd; 
   color: #2D323F;
@@ -37,13 +45,16 @@
 }
 
 #app-logo-header {
-  width: 45px;
-  padding-top: 5px;
+  width: 60px;
 }
 
 #right-anchored-navlink {
   margin-right: 0px;
   margin-left: auto;
+}
+
+.new-user-body {
+  background-color: black; 
 }
 
 /* Disables error stacktrace from showing up in dev mode. */
