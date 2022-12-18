@@ -1,0 +1,20 @@
+.profile-details {
+    border-style: solid;
+    border-width: 1px; 
+    border-radius: 10px; 
+    border-color: rgba(128, 128, 128, 0.402);
+    padding: 20px
+}
+
+.profile-details p {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.profile-details h4 {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 10px;
+}
+

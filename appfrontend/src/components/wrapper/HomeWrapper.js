@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
 
-import Home from "./Home";
+import Home from "../Home";
 
 /**
  * Wrapper component for home page to use certain hooks.

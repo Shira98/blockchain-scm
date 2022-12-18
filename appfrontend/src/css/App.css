@@ -48,13 +48,18 @@
   width: 60px;
 }
 
-#right-anchored-navlink {
+#right-anchored-menu-item {
   margin-right: 0px;
   margin-left: auto;
 }
 
 .new-user-body {
   background-color: black; 
+}
+
+.dropdown-arrow-icon {
+  margin-top: 20px;
+  outline:0
 }
 
 /* Disables error stacktrace from showing up in dev mode. */
