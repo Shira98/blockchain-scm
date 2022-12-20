@@ -28,11 +28,9 @@ export default class ToastMessage extends React.Component {
                         backgroundColor:this.props.bgColor,
                     }}
                     action= {
-                        <React.Fragment>
                           <IconButton size="small" aria-label="close" color="inherit" onClick={() => this.props.closeToastMessage()}>
                             <CloseIcon fontSize="small" />
                           </IconButton>
-                        </React.Fragment>
                       }
                 />
             </Snackbar>
