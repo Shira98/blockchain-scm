@@ -17,6 +17,11 @@ import "../css/PopUpModal.css";
  */
 export default class ProductDetails extends React.Component {
 
+    state = {
+        currency: "₹",
+        unit: "Kg"
+    }
+
     render() {
         const productDetails = this.props.product;
         return(
@@ -62,13 +67,13 @@ export default class ProductDetails extends React.Component {
                                 Product Price
                             </Grid>
                             <Grid item xs>
-                                {productDetails.productPrice}
+                                {productDetails.productPrice} {this.state.currency}
                             </Grid>
                             <Grid item xs={6} style={{ fontWeight: "bold"}}>
                                 Product Quantity
                             </Grid>
                             <Grid item xs>
-                                {productDetails.productQuantity}
+                                {productDetails.productQuantity} {this.state.unit}
                             </Grid>
                             <Grid item xs={6} style={{ fontWeight: "bold"}}>
                                 Product Status

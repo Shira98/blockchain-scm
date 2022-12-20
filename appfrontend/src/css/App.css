@@ -1,7 +1,7 @@
 .app {
   text-align: center;
   margin: 2rem;
-  background: #92869f2f;
+  background: #a89db37f;
   border-radius: 6px;
 }
 
@@ -33,11 +33,8 @@
 }
 
 #app-bar {
-  background-color: #d4ccdd; 
-  color: #2D323F;
-  border-style: solid solid none solid;
-  border-width: 2px;
-  border-color: #92869f2f;
+  background-color: #2d323fd4;
+  color: white;
 }
 
 #app-logo {

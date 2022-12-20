@@ -106,7 +106,7 @@ export default class PerformStatusAction extends React.Component {
                         <DialogActions>
                             <Grid container color="secondary" className="form-grid"  justifyContent="center" >
                                 <Grid item xs={3}>
-                                    <Button variant="contained" className="nf-button" color="primary" onClick={this.props.closePopup}>Close</Button>
+                                    <Button variant="outlined" className="nf-button" color="primary" onClick={this.props.closePopup}>Close</Button>
                                 </Grid> 
                                 <Grid item xs={3}>
                                     <Button variant="contained" className="nf-button" color="primary" onClick={this.confirmAction.bind(this)}>Confirm</Button>

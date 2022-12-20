@@ -7,7 +7,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
 import Grid from "@material-ui/core/Grid";
-import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
 
 import "../css/PopUpModal.css";
 
@@ -23,18 +24,25 @@ export default class ProductBatchForm extends React.Component {
         prodName: null,
         prodDesc: null,
         prodPrice: null,
-        prodQty: null
+        prodQty: null,
+        currency: "₹",
+        unit: "Kg"
     };
+
+    addZeroesForDecimals(productPrice){
+        return productPrice * 100;
+    }
 
     createProductBatch(event){
         //Prevents reloading of the entire page after submission.
         event.preventDefault();
         this.props.showLoaderScreen();
         let formData = this.state;
+        let updatedPrice = this.addZeroesForDecimals(formData.prodPrice);
         this.props.contractName.methods.produceProduct(
             formData.prodName,
             formData.prodDesc,
-            parseInt(formData.prodPrice),
+            parseInt(updatedPrice),
             parseInt(formData.prodQty),
             this.props.currentAddress
         )
@@ -84,7 +92,6 @@ export default class ProductBatchForm extends React.Component {
                             ref={null}
                             tabIndex={-1}
                         >
-                            <br />
                             <Grid 
                                 container 
                                 color="secondary" 
@@ -93,63 +100,89 @@ export default class ProductBatchForm extends React.Component {
                                 spacing={2}
                             >
                                 <Grid item xs={12} style={{ color: "red"}}>
-                                    <Input 
+                                    <TextField 
                                         required 
                                         fullWidth 
-                                        placeholder="Product Name" 
                                         name="prodName"
-                                        color='secondary' 
+                                        onChange={(event) => this.handleInput(event)}
+                                        InputLabelProps={{
+                                            style: {
+                                            color: 'grey'
+                                            } 
+                                        }}
                                         variant="outlined" 
-                                        onChange={(event) => this.handleInput(event)}/>
+                                        label="Product Name" />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Input 
+                                    <TextField 
                                         required 
                                         fullWidth 
-                                        multiline 
+                                        multiline
                                         name="prodDesc"
-                                        color="secondary" 
-                                        variant="filled" 
-                                        placeholder="Product Description" 
-                                        onChange={(event) => this.handleInput(event)}/>
+                                        onChange={(event) => this.handleInput(event)}
+                                        InputLabelProps={{
+                                            style: {
+                                                color: 'grey'
+                                            } 
+                                        }}
+                                        variant="outlined" 
+                                        label="Product Description" />
                                 </Grid>
                             </Grid>
                             <br />
-                            <center>
-                                <Grid 
-                                    container 
-                                    color="secondary" 
-                                    className="form-grid" 
-                                    justifyContent="center">
-                                    <Grid item xs={6}>
-                                        <Input
-                                            required 
-                                            placeholder="Product Price"  
-                                            name="prodPrice"
-                                            type="number"
-                                            inputProps={{
-                                                min: 1,
-                                                pattern: "[0-9]*"
-                                            }}
-                                            onChange={(event) => this.handleInput(event)}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Input 
-                                            required 
-                                            color="secondary" 
-                                            placeholder="Product Quantity" 
-                                            name="prodQty"
-                                            type="number"
-                                            inputProps={{
-                                                min: 1,
-                                                pattern: "[0-9]*"
-                                            }}
-                                            onChange={(event) => this.handleInput(event)} 
-                                        />
-                                    </Grid>
+                            <Grid 
+                                container 
+                                color="secondary" 
+                                className="form-grid" 
+                                // spacing={14}
+                                justifyContent="center">
+                                <Grid item xs={6}>
+                                    <TextField 
+                                        required 
+                                        type="number"
+                                        name="prodPrice"
+                                        onChange={(event) => this.handleInput(event)}
+                                        InputLabelProps={{
+                                            style: {
+                                                color: 'grey'
+                                            } 
+                                        }}
+                                        inputProps={{
+                                            min: 0.01,
+                                            step: 0.01,
+                                          }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end"> 
+                                                    <div style={{ color: "grey"}}>₹</div>
+                                                </InputAdornment>),
+                                        }}
+                                        variant="outlined" 
+                                        label="Product Price" />
                                 </Grid>
-                            </center>
+                                <Grid item xs={6}>
+                                    <TextField 
+                                        required 
+                                        name="prodQty"
+                                        onChange={(event) => this.handleInput(event)}
+                                        type="number"
+                                        InputLabelProps={{
+                                            min: 1,
+                                            pattern: "[0-9]*",
+                                            style: {
+                                                color: 'grey'
+                                            } 
+                                        }}
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end"> 
+                                                    <div style={{ color: "grey"}}>Kg</div>
+                                                </InputAdornment>),
+                                        }}
+                                        variant="outlined" 
+                                        label="Product Quantity" />
+                                </Grid>
+                            </Grid>
                         </DialogContentText>
                     </DialogContent>
                     <center>
@@ -162,7 +195,7 @@ export default class ProductBatchForm extends React.Component {
                                     justifyContent="center">
                                     <Grid item xs={3}>
                                         <Button 
-                                            variant="contained" 
+                                            variant="outlined" 
                                             className="nf-button" 
                                             color="primary" 
                                             onClick={this.props.closePopup}>Close</Button>

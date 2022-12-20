@@ -7,6 +7,8 @@ import Tab from "@material-ui/core/Tab";
 import AppBar from "@material-ui/core/AppBar";
 import Paper from "@material-ui/core/Paper";
 
+import AddIcon from '@material-ui/icons/Add';
+
 import {PRODUCT_STATUSES, STATUS_ACTIONS} from './enum/ProductStatusEnum';
 import {USER_TYPES} from './enum/UsersEnum';
 
@@ -24,8 +26,8 @@ import "../css/App.css";
 
 const cols = [
   { field: "productName", title: "Product Name", numeric: false, align: "left" },
-  { field: "productPrice", title: "Price", numeric: true, align: "left" },
-  { field: "productQuantity", title: "Quantity", numeric: true, align: "left" },
+  { field: "productPrice", title: "Price (₹)", numeric: true, align: "left" },
+  { field: "productQuantity", title: "Quantity (Kg)", numeric: true, align: "left" },
   { field: "productStatus", title: "Status", numeric: false, align: "left" },
   { field: "action", title: "Action", numeric: false, align: "center" },
   { field: "productDesc", title: "Additional Details", numeric: false, align: "center" },
@@ -138,6 +140,10 @@ export default class Home extends React.Component {
         return productStatuses;
     }
 
+    convertToDecimal(number) {
+        return number/100;
+    }
+
     getProductDetails(contractName) {
         const productDetailsArray = contractName.getAllProductDetails[this.state.dataKey];
         let rows = [];
@@ -149,7 +155,7 @@ export default class Home extends React.Component {
                     productId: productDetails["productId"],
                     productName: productDetails["productName"], 
                     productDesc: productDetails["productDesc"], 
-                    productPrice: productDetails["productPrice"],
+                    productPrice: this.convertToDecimal(productDetails["productPrice"]),
                     productQuantity: productDetails["productQuantity"],
                     consumerAddress: productDetails["consumerAddress"], 
                     currentUser: productDetails["currentStatusUser"], 
@@ -277,16 +283,16 @@ export default class Home extends React.Component {
 
             return (
                 <div className="main-body" color="primary">
-                    <Paper className="app" style={{ backgroundColor: "#92869f2f", minHeight: 600 }}>
+                    <Paper className="app" style={{ backgroundColor: "#92869f63", minHeight: 600 }} elevation={3}>
                         <AppBar 
                             id="app-bar"
                             position="static" 
                             elevation={0} 
-                            color="secondary" 
                         >
                             <Tabs 
                                 variant="fullWidth"
                                 value={this.state.tabValue} 
+                                TabIndicatorProps={{ style: { background: "#FBFAFA" } }}
                                 onChange={(event, value) => this.handleTabChange(event, value)}
                             >
                                 <Tab label="View Active Batches" />
@@ -296,12 +302,18 @@ export default class Home extends React.Component {
                         
                         <TabPanel value={this.state.tabValue} index={0} count={2}>
                             { this.props.userType == USER_TYPES[0] ? 
-                                <Button variant="outlined" onClick={() => this.showAddBatchPopUp()}>Produce a Batch</Button>
+                            <div>
+                                <Button 
+                                    variant="contained" 
+                                    color="secondary" 
+                                    onClick={() => this.showAddBatchPopUp()}>
+                                        <AddIcon style={{ paddingRight: "4px", paddingTop: "1px" }} />Produce a Batch
+                                </Button>                     
+                                <br/>
+                                <br/>
+                            </div>
                                 : null
                             }
-                            
-                            <br/>
-                            <br/>
                             <BatchTable 
                                 rows={activeBatches} 
                                 cols={cols} 
