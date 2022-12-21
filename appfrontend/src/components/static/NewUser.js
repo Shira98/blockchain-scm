@@ -33,7 +33,7 @@ const NewUser = ({isAuthenticated}) => {
 
     return (
         <div className="new-user-body">
-            <Backdrop open color="secondary">
+            <Backdrop open className="backdrop-design">
                 <Paper elevation={0} className="new-user-paper">
                     <center>
                         <LockIcon fontSize="large" aria-label="back" style={{ fontSize: 50 }} />

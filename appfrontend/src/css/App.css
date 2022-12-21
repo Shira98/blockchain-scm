@@ -11,6 +11,12 @@
   margin: 4rem auto auto;
 }
 
+.backdrop-design {
+  background-image: url(/BG.png);
+  background-position: left top;
+  background-size: cover;
+}
+
 .main-body {
   margin-top: 50px;
   align-content: center;

@@ -45,7 +45,7 @@ const RegistrationSuccess = ({isAuthenticated}) => {
 
     return (
         <div className="new-user-body">
-            <Backdrop open color="secondary">
+            <Backdrop open className="backdrop-design">
                 <Paper elevation={0} className="new-user-paper">
                     <center>
                         <Typography style={{ paddingTop: 30, fontWeight: "500" }} component="h1" variant="h5">Successfully Registered!</Typography>
