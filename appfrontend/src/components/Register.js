@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Paper from "@material-ui/core/Paper";
 import Backdrop from '@material-ui/core/Backdrop';
@@ -39,7 +40,7 @@ const Register = ({drizzle, drizzleState, isAuthenticated}) => {
 
     return (
         <div className="new-user-body">
-            <Backdrop open color="secondary">
+            <Backdrop open className="backdrop-design">
                 <Paper elevation={0} className="new-user-paper">
                     <IconButton color="inherit">
                         <ArrowBackIosIcon fontSize="large" aria-label="back" onClick={() => navigate(-1)} />
@@ -55,46 +56,52 @@ const Register = ({drizzle, drizzleState, isAuthenticated}) => {
                             spacing={2}
                         >
                             <Grid item xs={12}>
-                                <Button style={{ width: 200 }}
-                                    variant="contained"
-                                    color="primary"
-                                    className="nf-button"
-                                    onClick={() => navigate("/confirm-registration", {
-                                        state: {
-                                            type: USER_TYPES[0]
-                                        }
-                                      })}
-                                >
-                                    Producer
-                                </Button>
+                                <Tooltip arrow title="Create batches of various products." placement="right">
+                                    <Button style={{ width: 200 }}
+                                        variant="contained"
+                                        color="primary"
+                                        className="nf-button"
+                                        onClick={() => navigate("/confirm-registration", {
+                                            state: {
+                                                type: USER_TYPES[0]
+                                            }
+                                        })}
+                                    >
+                                        Producer
+                                    </Button>
+                                </Tooltip>
                             </Grid>
                             <Grid item xs={12}>
-                                <Button style={{ width: 200 }}
-                                    variant="contained"
-                                    color="primary"
-                                    className="nf-button"
-                                    onClick={() => navigate("/confirm-registration", {
-                                        state: {
-                                            type: USER_TYPES[1]
-                                        }
-                                      })}
-                                >
-                                    Distributor
-                                </Button>
+                                <Tooltip arrow title="Buy batches from producer and sell to retailer." placement="right">
+                                    <Button style={{ width: 200 }}
+                                        variant="contained"
+                                        color="primary"
+                                        className="nf-button"
+                                        onClick={() => navigate("/confirm-registration", {
+                                            state: {
+                                                type: USER_TYPES[1]
+                                            }
+                                        })}
+                                    >
+                                        Distributor
+                                    </Button>
+                                </Tooltip>
                             </Grid>
                             <Grid item xs={12}>
-                                <Button style={{ width: 200, marginBottom: 30 }}
-                                    variant="contained"
-                                    color="primary"
-                                    className="button"
-                                    onClick={() => navigate("/confirm-registration", {
-                                        state: {
-                                            type: USER_TYPES[2]
-                                        }
-                                      })}
-                                >
-                                    Retailer
-                                </Button>
+                                <Tooltip arrow title="Buy batches from distributor and sell to consumers." placement="right">
+                                    <Button style={{ width: 200, marginBottom: 30 }}
+                                        variant="contained"
+                                        color="primary"
+                                        className="button"
+                                        onClick={() => navigate("/confirm-registration", {
+                                            state: {
+                                                type: USER_TYPES[2]
+                                            }
+                                        })}
+                                    >
+                                        Retailer
+                                    </Button>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                         <Divider style={{ marginBottom: 20 }} />

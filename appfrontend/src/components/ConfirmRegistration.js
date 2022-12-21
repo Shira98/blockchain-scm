@@ -82,7 +82,7 @@ const ConfirmRegistration = ({drizzle, drizzleState, isAuthenticated}) => {
 
     return (
         <div className="new-user-body">
-            <Backdrop open color="secondary">
+            <Backdrop open className="backdrop-design">
                 <Paper elevation={0} className="new-user-paper">
                     <IconButton color="inherit">
                         <ArrowBackIosIcon fontSize="large" aria-label="back" onClick={() => navigate(-1)} />

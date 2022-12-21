@@ -14,7 +14,7 @@ import '../../css/App.css';
 */
 export const PageLoader = () => (
     <div> 
-        <Backdrop open color="secondary">
+        <Backdrop open className="backdrop-design">
             <center>
                 <Box>
                     <img src="/bscm_light_circle.png" alt="logo" id="app-logo"/>
@@ -23,7 +23,7 @@ export const PageLoader = () => (
                     <Typography variant="h7" color="textSecondary">Connecting to the chain. Please check your connection.</Typography>
                     <br/>
                     <br/>
-                    <LinearProgress />   
+                    <LinearProgress color="secondary" />   
                 </Box> 
             </center>
         </Backdrop> 
