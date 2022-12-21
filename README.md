@@ -59,3 +59,15 @@ Producers can create batches of products and the rest of the users can buy and s
 
 ## Enhancements
 Please check the repository's project board for ongoing and future enhancements.
+
+## Target State
+
+### Supply Chain Flow 
+<p>
+ <img src="images/Supply Chain Flow.png" alt="Supply Chain Flow - BSCM" height=400/>
+</p>
+
+### User Actions
+<p>
+ <img src="images/User Actions.png" alt="User Actions - BSCM" height=400/>
+</p>
