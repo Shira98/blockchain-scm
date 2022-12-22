@@ -52,9 +52,8 @@ export default class BatchTable extends React.Component {
                                             tabIndex={-1}
                                             key={row.productId}
                                         >
-                                            <TableCell component="th" scope="row" align="left" width="20%">{row.productName}</TableCell>
-                                            <TableCell align="left" width="10%">{row.productPrice}</TableCell>
-                                            <TableCell align="left" width="10%">{row.productQuantity}</TableCell>
+                                            <TableCell component="th" scope="row" align="left" width="10%">{row.productId}</TableCell>
+                                            <TableCell align="left" width="20%">{row.productName}</TableCell> 
                                             <TableCell align="left" width="10%">{row.productStatus}</TableCell>
                                             <TableCell align="center" width="20%">
                                                 <Button 
