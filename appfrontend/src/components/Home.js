@@ -25,9 +25,8 @@ import { CircularPageLoader } from "./static/CircularPageLoader";
 import "../css/App.css";
 
 const cols = [
+  { field: "productID", title: "Product ID", numeric: true, align: "left" },
   { field: "productName", title: "Product Name", numeric: false, align: "left" },
-  { field: "productPrice", title: "Price (₹)", numeric: true, align: "left" },
-  { field: "productQuantity", title: "Quantity (Kg)", numeric: true, align: "left" },
   { field: "productStatus", title: "Status", numeric: false, align: "left" },
   { field: "action", title: "Action", numeric: false, align: "center" },
   { field: "productDesc", title: "Additional Details", numeric: false, align: "center" },
@@ -296,7 +295,7 @@ export default class Home extends React.Component {
                                 onChange={(event, value) => this.handleTabChange(event, value)}
                             >
                                 <Tab label="View Active Batches" />
-                                <Tab label="View History" />
+                                <Tab label="View Sold Batches" />
                             </Tabs>
                         </AppBar>
                         
@@ -307,7 +306,7 @@ export default class Home extends React.Component {
                                     variant="contained" 
                                     color="secondary" 
                                     onClick={() => this.showAddBatchPopUp()}>
-                                        <AddIcon style={{ paddingRight: "4px", paddingTop: "1px" }} />Produce a Batch
+                                        <AddIcon style={{ paddingRight: "4px", paddingTop: "1px" }} />Produce a New Batch
                                 </Button>                     
                                 <br/>
                                 <br/>
@@ -330,7 +329,7 @@ export default class Home extends React.Component {
                                 cols={cols} 
                                 toggleBatchDetailsPopUp={(prodRow) => this.toggleBatchDetailsPopUp(prodRow)} 
                                 showConfirmActionPopUp={(action, id) => this.showConfirmActionPopUp(action, id)}
-                                emptyRowsMessage="No history batches yet. Try selling a batch."
+                                emptyRowsMessage="No sold batches yet. Try selling a batch."
                             />
                         </TabPanel>
 

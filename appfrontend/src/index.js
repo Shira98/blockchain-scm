@@ -57,6 +57,7 @@ document.getElementById('root'));
 
 window.ethereum.on('accountsChanged',async (accounts) =>{
     window.location.reload(false);
+    window.history.replaceState({}, document.title);
 });
 
 // If you want your app to work offline and load faster, you can change
