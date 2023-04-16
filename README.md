@@ -46,6 +46,10 @@ For more commands, please refer to Truffle's [guides and tutorials](https://truf
 ### Get the Frontend Running
 Navigate to the `appfrontend` folder and run `npm start`. This should start the application and open it up in `localhost:3000`. Register with one of the MetaMask accounts as either a producer, distributor, or a retailer. 
 
+<p align="center">
+ <img src="images/currentstate/interface.gif" alt="Web Application GIF" height=400/>
+</p>
+
 ## Current Functionalities
 Currently uses the first available address to carry out these functionalities and works only for one producer, distributor and retailer user accounts. 
 
