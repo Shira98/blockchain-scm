@@ -1,4 +1,8 @@
-# A Blockchain Based Supply Chain Management System
+# Bridge - A Blockchain Based Supply Chain Management System
+Connects producers, distributors, and retailers in creating batches of produces, shipments, and sales. 
+
+## 2026 Update - Upcoming Rebrand! 
+The product is being rebranded from BSCM to Bridge and is being re-designed for a more modern and intuitive experience! Get a sneak peek [here](https://www.behance.net/gallery/243851611/Bridge-Enterprise-Blockchain-SCM-UIUX-Rebrand).
 
 ## Hardhat Migration
 In light of Truffle and Ganache's sunset, the project has been migrated to Hardhat. The old Truffle code  can be accessed from the `truffle_version` branch in this repository.
